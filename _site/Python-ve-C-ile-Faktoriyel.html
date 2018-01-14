@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Furkan Taha ÖNDER'in kişisel blogu">
+    <meta name="author" content="Furkan Taha ÖNDER" />
+    <meta name="keywords" content="">
+        
+    <link rel="icon" href="/assets/images/favicon.ico">
+    <title>Python ve C ile Faktöriyel</title>
+
+    <link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.css"> 
+    
+    <link rel="alternate" type="application/rss+xml" title="Furkan Taha ÖNDER - " href="/feed.xml" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/custom.css" rel="stylesheet">
+    
+    <!-- Styles for 'Syntax Highlighting' of code -->
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets//js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Facebook OpenGraph tags -->
+    <meta property="og:title" content="Python ve C ile Faktöriyel" />
+    <meta property="og:type" content="website" />
+
+    
+        <meta property="og:url" content="http://localhost:4000/Python-ve-C-ile-Faktoriyel/" />
+    
+
+    
+        <meta property="og:image" content="" />
+    
+</head>
+
+
+<body>
+    
+    <div class="container">
+        <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://furkanonder.github.io/">FurkanTahaÖNDER</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://furkanonder.github.io/">Anasayfa</a></li>
+            <li><a href="/hakkimda/">Hakkımda</a></li>
+            <li><a href="/arsiv/">Arşiv</a></li>
+          </ul>
+        </div>
+    </div>
+</div>
+
+<div id="ust" class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="text-primary">Python ve C ile Faktöriyel</h3>
+                <span class="text-muted">
+                <!-- <small>25 February 2016</small> -->
+                <time datetime="25 February 2016">
+                     25 Şubat 2016
+                </time>
+            	</span>
+            </div>
+            <div class="panel-body">
+                Merhaba, bugün ki yazımda sizlere python ve c ile faktöriyel almayı göstereceğim.<br />
+Öncelikle faktöriyelin ne olduğunu kısaca açıklayalım:<br /><br />Faktöriyel, pozitif bir tamsayının kendisinden önceki bütün tamsayılarla 1'e inilinceye kadar çarpılması sonucunda elde edilen çarpımdır. n sayısının faktöriyeli, n! şeklinde gösterilir.<br /><br />
+Örneğin;<br />5 sayısının faktöriyeli 5.4.3.2.1= 120 olarak hesaplanır. Faktöriyel hakkında daha fazla bilgi almak için <a href="https://tr.0wikipedia.org/wiki/Fibonacci_dizisi" target="_blank"> burayı </a>ziyaret edebilirsiniz. ziyaret edebilirsiniz.<br /><br />Şimdi faktöriyel için python ve c ile yazılmış&nbsp; olan&nbsp; kodları inceleyelim;<br /><br />C:
+
+<pre class="brush:cpp">//Created by Furkan Taha ÖNDER on 04.12.2016.
+#include &lt;<a>stdio.h</a>&gt; 
+int main(){  
+    int sayi, sonuc=1; 
+  
+    printf("Faktoriyelini almak istediginiz sayiyi  giriniz: ");
+    scanf("%d", &sayi); 
+		
+    // for ile bir döngü oluşturduk.Döngünün içinde i değişkeni oluşturup, 1'e eşitliyoruz.
+    //i değiskeni, sayi değişkenine eşit ya da büyük olmasına kadar döngü  tekrar edecek.
+    //i değişkeni döngünün her tekrarında  arttırılacak.
+		
+    for(int i=1;i<=sayi;i++){ 
+    sonuc = sonuc*i; 
+    }
+    printf("%d sayisinin faktoriyeli %d sayisina esittir.",sayi, sonuc);  
+  
+  getchar();
+  return 0; 
+}
+</pre>
+
+<span style="line-height: 115%;"><span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Python:</span>
+
+<pre class="brush:python">#Created by Furkan Taha ÖNDER on 4.12.2016.
+sayı = int(input('Faktöriyelini almak istediğiniz sayıyı giriniz : '))
+faktöriyel = 1
+
+#For yapısı ile bir döngü oluşturuyoruz.
+#range(sayı) ile girdiğimiz sayı kadar döngünün tekrar etmesini sağlıyoruz.
+for i in range(sayı):    
+    faktöriyel = faktöriyel *(1+i)
+
+print(sayı,"sayısının faktöriyeli",faktöriyel,"sayısına eşittir.")
+</pre>
+<span style="font-family: &quot;times new roman&quot;;"><span style="font-family: Arial, Helvetica, sans-serif;"><span style="white-space: normal;">Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim.</span>
+</span><span style="font-family: &quot;times new roman&quot;;"><span style="font-family: Arial, Helvetica, sans-serif; white-space: normal;">İyi Çalışmalar.</span><span style="font-family: times new roman;">
+</span></span></span></span></0></pre>
+
+            </div>
+
+            <div class="panel-footer">
+                <ul class="pager panel-info">
+                     
+                    <li class="previous">
+                        <a href="/Python-ve-C-ile-Fibonacci-Dizisi" data-toggle="tooltip" data-placement="top"
+                        title="">&larr; Sonraki Gönderi</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        
+        <div class="panel panel-info">
+            <div class="panel-body">
+                
+<div class="comments">
+    <div id="disqus_thread"></div>
+	<script>
+
+	/**
+	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+	/*
+	var disqus_config = function () {
+	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://furkantahaonder.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+            </div>
+        </div>
+        
+    </div>
+    <div class="row2">
+	    <div class="col-md-12">
+	        <div class="panel panel-danger">
+	            <div class="panel-heading">
+	                <span class="text-primary"><b>Son Gönderiler</b></span>
+	            </div>
+	            <div class="panel-body">
+	                <ul>
+	                    
+	                        <li>
+	                            <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi">Monte Carlo Methodu ile Pi Sayısının Hesaplanması</a>
+	                        </li>
+	                    
+	                        <li>
+	                            <a href="/Blog-Hakkinda">Blog Hakkında</a>
+	                        </li>
+	                    
+	                        <li>
+	                            <a href="/Python-ve-C-ile-Fibonacci-Dizisi">Python ve C ile Fibonacci Dizisi</a>
+	                        </li>
+	                    
+	                </ul>
+	            </div>
+	        </div>
+	    </div>   
+    </div>    
+</div>
+
+
+    </div>
+
+    <footer class="footer">
+  <div class="container footerBox">
+    <p class="copyright text-muted">
+      &#169; 2018 Furkan Taha ÖNDER.Powered by Github Pages and Jekyll.
+    </p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+ 
+    
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108363583-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-108363583-1');
+	</script>
+
+
+
+
+</body>
+
+</html>

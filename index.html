@@ -1,0 +1,78 @@
+--- 
+layout: default 
+---
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://furkanonder.github.io/">FurkanTahaÖNDER</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="http://furkanonder.github.io/">Anasayfa</a></li>
+            <li><a href="/hakkimda/">Hakkımda</a></li>
+            <li><a href="/arsiv/">Arşiv</a></li>  
+          </ul>
+        </div>
+    </div>
+</div>
+
+<div class="posts-list">
+    {% for post in paginator.posts %}
+        <article class="postPreviewBox">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <h2 class="postTitle">{{ post.title }}</h2> 
+                {% if post.subtitle %}
+                    <h3 class="postSubTitle">
+                        {{ post.subtitle }}
+                    </h3> 
+                {% endif %}
+            </a>
+
+            <p class="postMeta">
+             <time datetime="{{ post.date | %-d %B %Y" }}">
+                     {{ post.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
+            </time>
+            </p>
+
+            <div class="postPreviewContent">
+                {{ post.content | truncatewords: 30 | strip_html | xml_escape}}
+                <br/><br/>
+                <a href="{{ post.url | prepend: site.baseurl }}" class="readMoreLink">&raquo; [Devamını&nbsp;oku...]</a>
+            </div>
+
+        </article>
+        {% endfor %}
+    </div>
+
+{% if paginator.total_pages > 1 %}
+    <ul class="pager main-pager">
+    {% if paginator.previous_page %}
+        <li class="previous">
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Yeni Gönderiler</a>
+        </li>
+    {% endif %} 
+    {% if paginator.next_page %}
+        <li class="next">
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Eski Gönderiler &rarr;</a>
+        </li>
+    {% endif %}
+    </ul>
+{% endif %}
+
+</div>
+<footer class="footer">
+  <div class="container footerBox">
+    <p class="copyright text-muted">
+      &#169; 2017 Furkan Taha ÖNDER.Powered by Github Pages and Jekyll.
+    </p>
+  </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>

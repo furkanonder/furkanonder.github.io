@@ -1,0 +1,62 @@
+---
+title: Python ve C ile Fibonacci Dizisi
+comments: true
+layout: post
+show-avatar: true
+date: '2016-12-04'
+author: furkan taha onder
+categories:
+- python
+tags:
+- fibonacci
+---
+
+Merhaba, bugün ki yazımda sizlere python ve c ile fibonacci dizisi oluşturmayı göstereceğim.<br />
+<br />
+Kısaca fibonacci dizisini tanıyalım:
+<br />
+Fibonacci dizisi her sayının kendinden önceki sayı ile toplanması sonucu oluşan bir sayı dizisidir.<br />
+<br />
+<span style="background-color: white; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif; font-size: 14px; line-height: 22.4px;"><a href="/assets/images/fib.jpg" imageanchor="1"><img border="0" height="95" src="/assets/images/fib.jpg" width="840" /></a></span><br />
+n yerine sırasıyla 0,1,2,3,4,5,6,7... şeklinde değerler verdiğimizde 0,1,1,2,3,5,8,13…şeklinde bir fibonacci dizisi elde ederiz.Fibonacci dizisi ile ilgili daha ayrıntılı bilgi almak için <a href="https://tr.0wikipedia.org/wiki/Fibonacci_dizisi" target="_blank"> burayı </a>ziyaret edebilirsiniz.<br />
+<br />
+Şimdi fibonacci dizisi için python ve c ile yazmış olduğum kodları inceleyelim;<br />
+
+C:</div>
+<div class="MsoNormal">
+<pre class="brush:cpp">//Created by Furkan Taha ÖNDER on 26.11.2016.
+#include &lt;<a>stdio.h</a>&gt; 
+int main(){
+   int n=10, a = 0, b = 1, deger;
+     
+   //Bir döngü oluşturuyoruz.Bu döngü b değeri n den büyük olana kadar tekrar edecek.
+   for( ; b < n; ){
+     deger = a+b;
+     a = b;
+     b = deger;
+     printf("%d\n",b);
+    }
+    
+  getchar();
+  return 0;  
+}
+</pre>
+
+<span style="font-family: &quot;times new roman&quot;; white-space: normal;">Python:</span>
+<pre class="brush:python">#Created by Furkan Taha ÖNDER on 26.11.2016.
+n=10
+a=1
+b=0
+
+#Bir döngü oluşturuyoruz.Bu döngü, b değeri 10'dan büyük olana kadar tekrar edecek.
+while b < n:
+    deger= a+b
+    a = b
+    b = deger
+	  print(b)
+</pre>
+<span style="font-family: &quot;times new roman&quot;;"><span style="white-space: normal;">Bu kodların konsol çıktısı "1 1 2 3 5 8 13" şeklinde olur.</span>
+
+<span style="font-family: &quot;times new roman&quot;;"><span style="white-space: normal;">Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim.</span>
+<span style="font-family: &quot;times new roman&quot;;"><span style="white-space: normal;">İyi Çalışmalar.</span>
+</span></span></span>

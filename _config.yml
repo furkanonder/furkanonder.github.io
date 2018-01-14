@@ -1,0 +1,33 @@
+url: "https://furkanonder.github.io/"
+
+title: Furkan Taha ÖNDER
+
+desc: Furkan Taha ÖNDER'in kişisel blogu
+
+disqus: ""
+
+google_analytics: "UA-108363583-1"
+
+profile:
+  name: Furkan Taha ÖNDER
+  email: furkantahaonder@gmail.com
+
+timezone: "Europe/Istanbul"
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+permalink: /:title
+paginate: 5
+
+plugins: 
+- jekyll-paginate
+- jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+
+
