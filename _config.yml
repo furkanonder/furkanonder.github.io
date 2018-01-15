@@ -23,6 +23,7 @@ paginate: 5
 plugins: 
 - jekyll-paginate
 - jekyll-feed
+- jekyll-seo-tag
 exclude:
   - Gemfile
   - Gemfile.lock
