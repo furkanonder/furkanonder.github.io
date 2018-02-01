@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /arsiv/
+Sitemap: https://furkanonder.github.io/sitemap.xml
