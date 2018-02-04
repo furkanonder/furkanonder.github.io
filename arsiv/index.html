@@ -23,9 +23,7 @@ title: Arşiv
     </div>
 </div>
 
-
-
-<div class="archive-page">
+<div class="page clearfix">
     <div class="left">
         <h1>{{page.title}}</h1>
         <hr>
@@ -43,15 +41,13 @@ title: Arşiv
             {% endunless %}
 
             <li>
-                <time>
-                {{ post.date | date:"%F" }} {{ post.date | date: "%a" }}.
+                <time datetime="{{ post.date | %-d %B %Y" }}">{{ post.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
                 </time>
-                <a class="title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>               
+                <a class="title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                {% include tag.html %}
             </li>
 
           {% endfor %}
         </ul>
     </div>
-   
 </div>
-
