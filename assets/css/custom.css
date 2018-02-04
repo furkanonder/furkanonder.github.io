@@ -10,8 +10,11 @@ body {
   padding-top: 70px;
   margin-bottom: 80px;
 }
+body h1,h2{
+  color: black;
+}
 
-/* NAVBAR */
+/*Navbar*/
 .container {
   font-size: 16px
 }
@@ -39,25 +42,20 @@ body {
   border-bottom:3px solid;
   padding-bottom:12px;
 }
-
 .navbar-default .navbar-nav>li:first-child>a,.navbar-default .navbar-nav>li:first-child>a:hover,.navbar-default .navbar-nav>li:first-child>a:focus{
   color: white;  
 }
-
 .navbar-default .navbar-nav>li:nth-child(2)>a,.navbar-default .navbar-nav>li:nth-child(2)>a:hover,.navbar-default .navbar-nav>li:nth-child(2)>a:focus{
   color: white;
 }
-
 .navbar-default .navbar-nav>li:nth-child(3)>a,.navbar-default .navbar-nav>li:nth-child(3)>a:hover,.navbar-default .navbar-nav>li:nth-child(3)>a:focus{
   color: white;  
 }
-
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav >li.active>a{
   color: white;
   background-color: #a00303;
 }
-
-/*home page*/
+/*Home page*/
 .postPreviewBox {
   -webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
@@ -67,7 +65,6 @@ body {
 .readMoreLink {
   font-size: 16px;  
 }
-
 .posts-list {
   background-color: #ffffff;
   margin-bottom: 22px;
@@ -96,7 +93,7 @@ body {
   color: #6c6e70; 
 }
 
-/*about page*/
+/*About page*/
 #about-page {
   padding-top: 30px;
 }
@@ -105,7 +102,7 @@ body {
   font-size: 26px;
 }  
 
-/*archive page*/
+/*Archive page*/
 .archive-page{
   font-size: 18px;
   color:black;
@@ -113,8 +110,8 @@ body {
 
 /*Post page*/
 .panel-info > .panel-heading {
-background-color: #d6e5f9;
-border-color: #d6e5f9;
+	background-color: #d6e5f9;
+	border-color: #d6e5f9;
 }
 
 .panel-body{
@@ -139,7 +136,7 @@ border-color: #d6e5f9;
   font-size: 17px;
 }
 
-/*post buttons*/
+/*Post buttons*/
 .next a{
   color: #701022;
   font-size: 16px;
@@ -150,7 +147,7 @@ border-color: #d6e5f9;
   font-size: 16px;
 } 
 
-/* FOOTER */
+/*Footer*/
 .footer {
   color: white;
   text-align: center;
@@ -168,47 +165,64 @@ border-color: #d6e5f9;
 
 .footerBox p{
   color: white;
-  font-size: 18px;
+  font-size: 23px;
   margin: 18px		
 }
 
 /*Responsive*/
-/* for mobile phones*/
-@media screen and (max-width: 479px)  { 
-  .archive-page{
-  font-size: 19px;
-  font-weight: bold;
-  }
+/*for mobile phones*/
+@media screen and (max-width: 479px){ 
+		.archive-page{
+		font-size: 19px;
+		font-weight: bold;
+	}
 
- .about-page p{
-  font-size: 16px;
-  font-weight: bold;	 
-  }
+	.about-page p{
+		font-size: 16px;
+		font-weight: bold;	 
+	}
 
-  .panel-body{
-    font-size: 15px;
-  }
+	.panel-body{
+		font-size: 15px;
+	}
 
-  .panel-body img{
-    max-width:100% !important;
-    height:auto;
-    display:block;
-  }
+	.panel-body img{
+		max-width:100% !important;
+		height:auto;
+		display:block;
+	}
 
-  .next a{
-  color: black;
-  font-size: 12px;
-  } 
+	.next a{
+		color: black;
+		font-size: 12px;
+	} 
 
-  .previous a{
-  color: black;
-  font-size: 12px;
-  }
+	.previous a{
+		color: black;
+		font-size: 12px;
+	}
 
-  .footer {
-  bottom: -78px;
-  height: 124px;
-  }
+	.footer {
+		bottom: -78px;
+		height: 124px;
+	}
 
+}
+/*Tag Page*/
+.post-content a {
+    color: #005f97;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.tag-title {
+    font-family: 'Open Sans',sans-serif;
+	font-size: 2.75rem;
+}
+.container span {
+    color: black;
+}
+.post-list .entry-date {
+    float: right;
 }
 
