@@ -52,6 +52,15 @@ comments: true
                         title="{{page.previous.title}}">&larr; Sonraki Gönderi</a>
                     </li>
                     {% endif %}
+		    <div class="post-date">{{ site.data.settings.sharing_button_prompt }}</div>
+                      <div class="sharing-icons">
+                        <div class="post-date">Sosyal Medyada Paylaş!</div>
+                        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&amp;url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.github.url }}{{ page.url }}&amp;title={{ page.title }}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+
+                        <a href="https://plus.google.com/share?url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+                    </div>				
                 </ul>
             </div>
         </div>
