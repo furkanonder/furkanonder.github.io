@@ -172,7 +172,7 @@ body h1,h2{
 /*Responsive*/
 /*for mobile phones*/
 @media screen and (max-width: 479px){ 
-		.archive-page{
+	.archive-page{
 		font-size: 19px;
 		font-weight: bold;
 	}
@@ -203,9 +203,12 @@ body h1,h2{
 	}
 
 	.footer {
-		bottom: -78px;
-		height: 124px;
+		bottom: -59px;
+		height: 99px;
 	}
+	.footer p{
+		font-size:16px;
+	}	
 
 }
 /*Tag Page*/
