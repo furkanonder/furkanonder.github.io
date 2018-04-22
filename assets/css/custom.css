@@ -10,7 +10,7 @@ body {
   padding-top: 70px;
   margin-bottom: 80px;
 }
-body h1,h2{
+.black-text {
   color: black;
 }
 
@@ -69,7 +69,7 @@ body h1,h2{
   background-color: #ffffff;
   margin-bottom: 22px;
 }
-.posts-list h2{
+.posts-list .post-title {
   font-family: 'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size:38px;
   line-height: 1.2em;
@@ -94,7 +94,7 @@ body h1,h2{
 }
 
 /*About page*/
-#about-page {
+.pTop30 {
   padding-top: 30px;
 }
 
@@ -114,11 +114,11 @@ body h1,h2{
 	border-color: #d6e5f9;
 }
 
-.panel-body{
+.panel-body {
   font-size: 22px;
 }
 
-.panel-heading h3{
+.panel-heading .panel-title {
   font-size: 35px;
   color: black;
 }
@@ -228,4 +228,3 @@ body h1,h2{
 .post-list .entry-date {
     float: right;
 }
-
