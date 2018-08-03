@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   font-family:'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #555;
@@ -10,7 +11,8 @@ body {
   padding-top: 70px;
   margin-bottom: 80px;
 }
-.black-text {
+
+body h1,h2{
   color: black;
 }
 
@@ -18,6 +20,7 @@ body {
 .container {
   font-size: 16px
 }
+
 .navbar-default {
   background-color: #5e0000;
 }
@@ -35,26 +38,31 @@ body {
   font-size: 1.9em;
   text-transform: lowercase;
   font-weight: 100;
-  
+
 }
 
 .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li.active>a{
   border-bottom:3px solid;
   padding-bottom:12px;
 }
+
 .navbar-default .navbar-nav>li:first-child>a,.navbar-default .navbar-nav>li:first-child>a:hover,.navbar-default .navbar-nav>li:first-child>a:focus{
-  color: white;  
+  color: white;
 }
+
 .navbar-default .navbar-nav>li:nth-child(2)>a,.navbar-default .navbar-nav>li:nth-child(2)>a:hover,.navbar-default .navbar-nav>li:nth-child(2)>a:focus{
   color: white;
 }
+
 .navbar-default .navbar-nav>li:nth-child(3)>a,.navbar-default .navbar-nav>li:nth-child(3)>a:hover,.navbar-default .navbar-nav>li:nth-child(3)>a:focus{
-  color: white;  
+  color: white;
 }
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav >li.active>a{
   color: white;
   background-color: #a00303;
 }
+
 /*Home page*/
 .postPreviewBox {
   -webkit-box-shadow: 0 4px 6px -6px #222;
@@ -62,19 +70,22 @@ body {
   box-shadow: 0 11px 14px -4px #504237;
   padding: 13px;
 }
+
 .readMoreLink {
-  font-size: 16px;  
+  font-size: 16px;
 }
+
 .posts-list {
   background-color: #ffffff;
   margin-bottom: 22px;
 }
-.posts-list .post-title {
+
+.posts-list  h2{
   font-family: 'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size:38px;
   line-height: 1.2em;
   font-weight: 400;
-  color: #337ab7; 
+  color: #337ab7;
 }
 
 .posts-list a{
@@ -82,7 +93,7 @@ body {
   font-size:16px;
   line-height: 1.2em;
   font-weight: 400;
-  color: black; 
+  color: black;
 }
 
 .posts-list p{
@@ -90,17 +101,17 @@ body {
   font-size:16px;
   line-height: 1.2em;
   font-weight: 400;
-  color: #6c6e70; 
+  color: #6c6e70;
 }
 
 /*About page*/
-.pTop30 {
+.#about-page {
   padding-top: 30px;
 }
 
 .about-page p{
   font-size: 26px;
-}  
+}
 
 /*Archive page*/
 .archive-page{
@@ -118,7 +129,7 @@ body {
   font-size: 22px;
 }
 
-.panel-heading .panel-title {
+.panel-heading h3{
   font-size: 35px;
   color: black;
 }
@@ -136,16 +147,24 @@ body {
   font-size: 17px;
 }
 
+.sharing-icons {
+  padding-left: 140px;
+}
+
+.post-date {
+  font-size: 23px;
+}
+
 /*Post buttons*/
 .next a{
   color: #701022;
   font-size: 16px;
-} 
+}
 
 .previous a{
   color: #701022;
   font-size: 16px;
-} 
+}
 
 /*Footer*/
 .footer {
@@ -166,12 +185,12 @@ body {
 .footerBox p{
   color: white;
   font-size: 23px;
-  margin: 18px		
+  margin: 18px
 }
 
 /*Responsive*/
 /*for mobile phones*/
-@media screen and (max-width: 479px){ 
+@media screen and (max-width: 479px){
 	.archive-page{
 		font-size: 19px;
 		font-weight: bold;
@@ -179,7 +198,7 @@ body {
 
 	.about-page p{
 		font-size: 16px;
-		font-weight: bold;	 
+		font-weight: bold;
 	}
 
 	.panel-body{
@@ -195,7 +214,7 @@ body {
 	.next a{
 		color: black;
 		font-size: 12px;
-	} 
+	}
 
 	.previous a{
 		color: black;
@@ -208,9 +227,17 @@ body {
 	}
 	.footer p{
 		font-size:16px;
-	}	
+	}
+
+  .sharing-icons {
+    padding-left: 0px;
+  }
+  .post-date {
+    font-size: 16px;
+  }
 
 }
+
 /*Tag Page*/
 .post-content a {
     color: #005f97;
@@ -218,13 +245,16 @@ body {
     font-weight: 300;
     font-style: normal;
 }
+
 .tag-title {
-    font-family: 'Open Sans',sans-serif;
+  font-family: 'Open Sans',sans-serif;
 	font-size: 2.75rem;
 }
+
 .container span {
-    color: black;
+  color: black;
 }
+
 .post-list .entry-date {
-    float: right;
+  float: right;
 }

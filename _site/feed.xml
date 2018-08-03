@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Furkan Taha ÖNDER</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 04 Aug 2018 01:27:41 +0300</pubDate>
+    <lastBuildDate>Sat, 04 Aug 2018 01:27:41 +0300</lastBuildDate>
+    <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>Python ile SQLite’a Giriş</title>
+        <description>Merhaba,&lt;br/&gt; Bu yazımızda Python’da Veritabanı Programlama’ya bir giriş yapıcağız.Bunun için Dolar/Tl kurundaki alış ,satış değerlerini ve bu değerleri elde ettiğimiz tarih ve saati veritabanına kaydeden küçük bir bot yazacağız.Veritabanını, içinde bilgi saklanabilen,birbiriyle ilişkili olan verilerin tutulduğu, yönetilebilir, güncellenebilir ve taşınabilir bilgi topluluğu olarak adlandırabiliriz.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;SQLite Ve Python&lt;/b&gt;&lt;br/&gt; SQLite, python programlama dilinde varsayılan olarak gelen bir veritabanıdır. Django ve Flask gibi python ile yazılan Web Frameworklerde de varsayılan olarak SQLite gelmektedir.SQLite, diğer veritabanlarına göre kolay bir yapıya sahiptir.&lt;br /&gt;&lt;br/&gt; &lt;b&gt;Veritabanımızı Oluşturalım&lt;/b&gt;&lt;br/&gt; Öncelikle sqlite3 kütüphanesini kodumuza dahil edelim. &lt;pre class=&quot;brush:python&quot;&gt; import sqlite &lt;/pre&gt; Veritabanımızı connet() methodu ile oluşturalım. &lt;pre class=&quot;brush:python&quot;&gt; vt =...</description>
+        <pubDate>Sat, 04 Aug 2018 01:30:00 +0300</pubDate>
+        <link>http://localhost:4000/Python-ile-SQLitea-Giris</link>
+        <guid isPermaLink="true">http://localhost:4000/Python-ile-SQLitea-Giris</guid>
+        
+        <category>Python ile SQLite’a Giriş</category>
+        
+        
+        <category>Python</category>
+        
+      </item>
+    
+      <item>
+        <title>Monte Carlo Methodu ile Pi Sayısının Hesaplanması</title>
+        <description>Merhaba, Bugünki yazımda Monte Carlo Metodu ile pi sayısının hesaplanmasını anlatacağım.Öncelikle Monte Carlo Metodu’nu tanıyalım.&lt;br /&gt; &lt;br /&gt; Monte Carlo Metodu, genel olarak istatistiksel simülasyonların yapılması için rastgele sayılardan faydalanılan bir metot olarak tanımlayabiliriz. Los Alamos Bilimsel Laboratuar’ından John Von Neumann, Stan Ulam ve Nick Metropolis adlarında üç bilim adamı tarafından ortaya çıkarılmıştır.Monte Carlo metodu ilk defa II.Dünya Savaşı sırasında atom bombasının geliştirilmesi ile ilgili problemlere uygulanmıştır.Günümüzde bu metot,Hücre Simülasyonu, Borsa Modelleri, Dağılım Fonksiyonları,Atom ve Molekül Fiziği, Nükleer Fizik modellerini test eden simülasyonlarının hesaplanmalarında kullanılır.&lt;br /&gt; &lt;br /&gt; Şimdi Monte Carlo Metodu ile pi sayısının hesaplanmasına geçelim.Alanı 4 birim kare...</description>
+        <pubDate>Sun, 14 Jan 2018 00:00:00 +0300</pubDate>
+        <link>http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi</link>
+        <guid isPermaLink="true">http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi</guid>
+        
+        <category>Monte Carlo Methodu İle Pi Sayısı</category>
+        
+        
+        <category>Python</category>
+        
+        <category>Java</category>
+        
+        <category>C</category>
+        
+      </item>
+    
+      <item>
+        <title>Blog Hakkında</title>
+        <description>Merhaba,&lt;br /&gt;Ben Furkan, bu blogun sahibiyim ve Bilgisayar Mühendisliği öğrencisiyim.Öğrendiklerimi ve tecrübelerimi paylaşmayı seviyorum.Bu yüzden blog yazmaya karar verdim.Daha önce  blog yazma konusunda biraz tecrübem oldu. &lt;a href=&quot;http://onderfurkantaha.blogspot.com.tr/&quot; target=&quot;_blank&quot;&gt;http://onderfurkantaha.blogspot.com.tr/&lt;/a&gt; adresindeki blog üzerinde  yazdığım yazıları buraya taşıdım.Bu arada bu blog hakkında biraz bilgi vermek istiyorum.Blog jekyll(blog framework)adı verilen&amp;nbsp; statik site oluşturucusu ile oluşutruldu,hosting ihtiyacını ise github pages tarafından karşılandı.Şimdilik benden bu kadar diğer yazımlarımda görüşmek üzere...</description>
+        <pubDate>Sat, 21 Oct 2017 00:00:00 +0300</pubDate>
+        <link>http://localhost:4000/Blog-Hakkinda</link>
+        <guid isPermaLink="true">http://localhost:4000/Blog-Hakkinda</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Python ve C ile Fibonacci Dizisi</title>
+        <description>Merhaba, bugün ki yazımda sizlere python ve c ile fibonacci dizisi oluşturmayı göstereceğim.&lt;br /&gt; &lt;br /&gt; Kısaca fibonacci dizisini tanıyalım: &lt;br /&gt; Fibonacci dizisi her sayının kendinden önceki sayı ile toplanması sonucu oluşan bir sayı dizisidir.&lt;br /&gt; &lt;br /&gt; &lt;span style=&quot;background-color: white; font-family: &amp;quot;arial&amp;quot; , &amp;quot;helvetica&amp;quot; , sans-serif; font-size: 14px; line-height: 22.4px;&quot;&gt;&lt;a href=&quot;/assets/images/fib.jpg&quot; imageanchor=&quot;1&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;95&quot; src=&quot;/assets/images/fib.jpg&quot; width=&quot;840&quot; /&gt;&lt;/a&gt;&lt;/span&gt;&lt;br /&gt; n yerine sırasıyla 0,1,2,3,4,5,6,7... şeklinde değerler verdiğimizde 0,1,1,2,3,5,8,13…şeklinde bir fibonacci dizisi elde ederiz.Fibonacci dizisi ile ilgili daha ayrıntılı bilgi almak için &lt;a href=&quot;https://tr.0wikipedia.org/wiki/Fibonacci_dizisi&quot; target=&quot;_blank&quot;&gt; burayı &lt;/a&gt;ziyaret edebilirsiniz.&lt;br /&gt; &lt;br /&gt; Şimdi fibonacci dizisi için python ve c ile yazmış olduğum...</description>
+        <pubDate>Sun, 04 Dec 2016 00:00:00 +0300</pubDate>
+        <link>http://localhost:4000/Python-ve-C-ile-Fibonacci-Dizisi</link>
+        <guid isPermaLink="true">http://localhost:4000/Python-ve-C-ile-Fibonacci-Dizisi</guid>
+        
+        <category>fibonacci dizisi</category>
+        
+        
+        <category>python</category>
+        
+        <category>C</category>
+        
+      </item>
+    
+      <item>
+        <title>Python ve C ile Faktöriyel</title>
+        <description>Merhaba, bugün ki yazımda sizlere python ve c ile faktöriyel almayı göstereceğim.&lt;br /&gt; Öncelikle faktöriyelin ne olduğunu kısaca açıklayalım:&lt;br /&gt;&lt;br /&gt;Faktöriyel, pozitif bir tamsayının kendisinden önceki bütün tamsayılarla 1'e inilinceye kadar çarpılması sonucunda elde edilen çarpımdır. n sayısının faktöriyeli, n! şeklinde gösterilir.&lt;br /&gt;&lt;br /&gt; Örneğin;&lt;br /&gt;5 sayısının faktöriyeli 5.4.3.2.1= 120 olarak hesaplanır. Faktöriyel hakkında daha fazla bilgi almak için &lt;a href=&quot;https://tr.0wikipedia.org/wiki/Fibonacci_dizisi&quot; target=&quot;_blank&quot;&gt; burayı &lt;/a&gt;ziyaret edebilirsiniz. ziyaret edebilirsiniz.&lt;br /&gt;&lt;br /&gt;Şimdi faktöriyel için python ve c ile yazılmış&amp;nbsp; olan&amp;nbsp; kodları inceleyelim;&lt;br /&gt;&lt;br /&gt;C: &lt;pre class=&quot;brush:cpp&quot;&gt;//Created by Furkan Taha ÖNDER on 04.12.2016. #include &amp;lt;&lt;a&gt;stdio.h&lt;/a&gt;&amp;gt; int main(){ int sayi, sonuc=1; printf(&quot;Faktoriyelini almak istediginiz sayiyi...</description>
+        <pubDate>Thu, 25 Feb 2016 00:00:00 +0200</pubDate>
+        <link>http://localhost:4000/Python-ve-C-ile-Faktoriyel</link>
+        <guid isPermaLink="true">http://localhost:4000/Python-ve-C-ile-Faktoriyel</guid>
+        
+        <category>faktöriyel hesaplama</category>
+        
+        
+        <category>python</category>
+        
+      </item>
+    
+  </channel>
+</rss>

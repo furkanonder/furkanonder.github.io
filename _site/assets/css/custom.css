@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   font-family:'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #555;
@@ -11,10 +12,15 @@ body {
   margin-bottom: 80px;
 }
 
-/* NAVBAR */
+body h1,h2{
+  color: black;
+}
+
+/*Navbar*/
 .container {
   font-size: 16px
 }
+
 .navbar-default {
   background-color: #5e0000;
 }
@@ -32,7 +38,7 @@ body {
   font-size: 1.9em;
   text-transform: lowercase;
   font-weight: 100;
-  
+
 }
 
 .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li.active>a{
@@ -41,7 +47,7 @@ body {
 }
 
 .navbar-default .navbar-nav>li:first-child>a,.navbar-default .navbar-nav>li:first-child>a:hover,.navbar-default .navbar-nav>li:first-child>a:focus{
-  color: white;  
+  color: white;
 }
 
 .navbar-default .navbar-nav>li:nth-child(2)>a,.navbar-default .navbar-nav>li:nth-child(2)>a:hover,.navbar-default .navbar-nav>li:nth-child(2)>a:focus{
@@ -49,7 +55,7 @@ body {
 }
 
 .navbar-default .navbar-nav>li:nth-child(3)>a,.navbar-default .navbar-nav>li:nth-child(3)>a:hover,.navbar-default .navbar-nav>li:nth-child(3)>a:focus{
-  color: white;  
+  color: white;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav >li.active>a{
@@ -57,27 +63,29 @@ body {
   background-color: #a00303;
 }
 
-/*home page*/
+/*Home page*/
 .postPreviewBox {
   -webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 11px 14px -4px #504237;
   padding: 13px;
 }
+
 .readMoreLink {
-  font-size: 16px;  
+  font-size: 16px;
 }
 
 .posts-list {
   background-color: #ffffff;
   margin-bottom: 22px;
 }
-.posts-list h2{
+
+.posts-list  h2{
   font-family: 'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size:38px;
   line-height: 1.2em;
   font-weight: 400;
-  color: #337ab7; 
+  color: #337ab7;
 }
 
 .posts-list a{
@@ -85,7 +93,7 @@ body {
   font-size:16px;
   line-height: 1.2em;
   font-weight: 400;
-  color: black; 
+  color: black;
 }
 
 .posts-list p{
@@ -93,19 +101,19 @@ body {
   font-size:16px;
   line-height: 1.2em;
   font-weight: 400;
-  color: #6c6e70; 
+  color: #6c6e70;
 }
 
-/*about page*/
-#about-page {
+/*About page*/
+.#about-page {
   padding-top: 30px;
 }
 
 .about-page p{
   font-size: 26px;
-}  
+}
 
-/*archive page*/
+/*Archive page*/
 .archive-page{
   font-size: 18px;
   color:black;
@@ -113,11 +121,11 @@ body {
 
 /*Post page*/
 .panel-info > .panel-heading {
-background-color: #d6e5f9;
-border-color: #d6e5f9;
+	background-color: #d6e5f9;
+	border-color: #d6e5f9;
 }
 
-.panel-body{
+.panel-body {
   font-size: 22px;
 }
 
@@ -139,18 +147,26 @@ border-color: #d6e5f9;
   font-size: 17px;
 }
 
-/*post buttons*/
+.sharing-icons {
+  padding-left: 140px;
+}
+
+.post-date {
+  font-size: 23px;
+}
+
+/*Post buttons*/
 .next a{
   color: #701022;
   font-size: 16px;
-} 
+}
 
 .previous a{
   color: #701022;
   font-size: 16px;
-} 
+}
 
-/* FOOTER */
+/*Footer*/
 .footer {
   color: white;
   text-align: center;
@@ -168,47 +184,77 @@ border-color: #d6e5f9;
 
 .footerBox p{
   color: white;
-  font-size: 18px;
-  margin: 18px		
+  font-size: 23px;
+  margin: 18px
 }
 
 /*Responsive*/
-/* for mobile phones*/
-@media screen and (max-width: 479px)  { 
-  .archive-page{
-  font-size: 19px;
-  font-weight: bold;
+/*for mobile phones*/
+@media screen and (max-width: 479px){
+	.archive-page{
+		font-size: 19px;
+		font-weight: bold;
+	}
+
+	.about-page p{
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.panel-body{
+		font-size: 15px;
+	}
+
+	.panel-body img{
+		max-width:100% !important;
+		height:auto;
+		display:block;
+	}
+
+	.next a{
+		color: black;
+		font-size: 12px;
+	}
+
+	.previous a{
+		color: black;
+		font-size: 12px;
+	}
+
+	.footer {
+		bottom: -59px;
+		height: 99px;
+	}
+	.footer p{
+		font-size:16px;
+	}
+
+  .sharing-icons {
+    padding-left: 0px;
   }
-
- .about-page p{
-  font-size: 16px;
-  font-weight: bold;	 
-  }
-
-  .panel-body{
-    font-size: 15px;
-  }
-
-  .panel-body img{
-    max-width:100% !important;
-    height:auto;
-    display:block;
-  }
-
-  .next a{
-  color: black;
-  font-size: 12px;
-  } 
-
-  .previous a{
-  color: black;
-  font-size: 12px;
-  }
-
-  .footer {
-  bottom: -78px;
-  height: 124px;
+  .post-date {
+    font-size: 16px;
   }
 
 }
 
+/*Tag Page*/
+.post-content a {
+    color: #005f97;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.tag-title {
+  font-family: 'Open Sans',sans-serif;
+	font-size: 2.75rem;
+}
+
+.container span {
+  color: black;
+}
+
+.post-list .entry-date {
+  float: right;
+}

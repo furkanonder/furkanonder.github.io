@@ -1,6 +1,6 @@
 ---
 layout: default
-comments: true 
+comments: true
 ---
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -44,8 +44,8 @@ comments: true
                     <li class="next">
                         <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Önceki Gönderi &rarr;</a>
                     </li>
-                    {% endif %} 
-                   
+                    {% endif %}
+
                     {% if page.next.url %}
                     <li class="previous">
                         <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top"
@@ -53,8 +53,8 @@ comments: true
                     </li>
                     {% endif %}
                      <div class="post-date">{{ site.data.settings.sharing_button_prompt }}</div>
-                      <div class="sharing-icons" style="padding-left: 140px;">
-                        <div class="post-date" style="font-size: 23px;">Sosyal Medyada Paylaş!</div>           
+                      <div class="sharing-icons">
+                        <div class="post-date">Sosyal Medyada Paylaş!</div>
 						<a href="https://twitter.com/intent/tweet?text={{ page.title }}&amp;url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
 
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.github.url }}{{ page.url }}&amp;title={{ page.title }}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
@@ -90,7 +90,7 @@ comments: true
 	                </ul>
 	            </div>
 	        </div>
-	    </div>   
-    </div>    
+	    </div>
+    </div>
 </div>
 

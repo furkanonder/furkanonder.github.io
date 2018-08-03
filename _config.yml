@@ -15,9 +15,10 @@ kramdown:
 permalink: /:title
 paginate: 5
 
-plugins: 
+plugins:
 - jekyll-paginate
 - jekyll-feed
+- jekyll-admin
 exclude:
   - Gemfile
   - Gemfile.lock
