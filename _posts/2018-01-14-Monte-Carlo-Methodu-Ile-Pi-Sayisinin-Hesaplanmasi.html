@@ -1,5 +1,5 @@
 ---
-title: Monte Carlo Methodu ile Pi Sayısının Hesaplanması
+title: Monte Carlo Metodu ile Pi Sayısının Hesaplanması
 comments: true
 layout: post
 show-avatar: true
@@ -10,7 +10,7 @@ categories:
 - Java
 - C
 tags:
-- Monte Carlo Methodu İle Pi Sayısı
+- Monte Carlo Metodu İle Pi Sayısı
 ---
 
 Merhaba,
@@ -25,11 +25,11 @@ Karenin içine kordinatları Z(a, b) noktası gibi rastgele atışlar gerçekle�
 olarak hesaplanır.Elde ettiğimiz bu ifadeyi 4 ile çarptığımızda ise yaklaşık olarak pi sayısını elde ederiz.
 <br />
 <br></br>
-<a href="/assets/images/atis.gif" imageanchor="1"></a> <img src="/assets/images/atis.gif" 
+<a href="/assets/images/atis.gif" imageanchor="1"></a> <img src="/assets/images/atis.gif"
 style="display: block;margin: 0 auto;height:300px;width:300px;" />
 <div style="text-align: center;">Yapılan rastgele atışların simule edilmiş hali</div>
 <br></br>
-Programlama dilleri ile Monte Carlo Methodu'nu kullanılarak pi sayısının hesaplanması için yazılmış olan kodları inceleyelim.<br />
+Programlama dilleri ile Monte Carlo Metodu'nu kullanılarak pi sayısının hesaplanması için yazılmış olan kodları inceleyelim.<br />
 <br />
 Python:
 <pre class="brush:python">#Created by Furkan Taha ÖNDER on  14.01.2018.
@@ -37,10 +37,10 @@ import random
 icerde = 0
 
 for atis_sayisi in range(0, 1000000):
-    a = random.random()        
+    a = random.random()
     b = random.random()
     z= (a*a+b*b)**0.5
-    if z < 1: 
+    if z < 1:
     	icerde+= 1
 atis_sayisi+= 1
 
@@ -48,10 +48,10 @@ print("Pi sayisinin yaklasik degeri:",4.0 * icerde / atis_sayisi)
 </pre>
 C:
 <pre class="brush:cpp">//Created by Furkan Taha ÖNDER on 14.01.2018.
-#include &lt;<a>stdio.h</a>&gt; 
-#include &lt;<a>stdlib.h</a>&gt; 
-#include&lt;<a>time.h</a>&gt; 
-#include &lt;<a>math.h</a>&gt; 
+#include &lt;<a>stdio.h</a>&gt;
+#include &lt;<a>stdlib.h</a>&gt;
+#include&lt;<a>time.h</a>&gt;
+#include &lt;<a>math.h</a>&gt;
 int main(){
     double a,b;
     float atis_sayisi=0,icerdeki=0,pi,z;
@@ -63,12 +63,12 @@ int main(){
    	 	b = (double)rand()/RAND_MAX*2.0-1.0;
    	   	z = sqrt(pow(a,2)+pow(b,2));
     	if(z<1)
-    	icerdeki+=1; 	
-   	}	
+    	icerdeki+=1;
+   	}
 
     pi = 4*(icerdeki/atis_sayisi)*1.0;
     printf("Pi sayisinin yaklasik degeri:%f\n",pi );
-    
+
     return 0;
 }
 </pre>
@@ -78,15 +78,15 @@ import java.util.Random;
 
 public class MonteCarlo {
 	private static Random rgen = new Random();
-    
+
     public static void main(String[] args) {
-     
+
 	    int atis_sayisi = 0;
 	    int icerde = 0;
 
 	    for(int i = 0; i<1000000; i++){
 	    	double a = 2 * rgen.nextDouble() - 1;
-	        double b = 2 * rgen.nextDouble() - 1;	
+	        double b = 2 * rgen.nextDouble() - 1;
 			atis_sayisi+=1;
 			if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
 				icerde+=1;
