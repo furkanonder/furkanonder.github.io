@@ -24,13 +24,7 @@ except:
 def vtEkle(alis, satis, TarihVeSaat):
     vt = sqlite3.connect('kur.db')
     imlec = vt.cursor()
-
-    sorgu = 'INSERT INTO kurTablosu (alis,satis,zaman) VALUES ('
-    sorgu += '"' + alis + '",'
-    sorgu += '"' + satis + '",'
-    sorgu += '"' + TarihVeSaat + '")'
-
-    imlec.execute(sorgu)
+    imlec.execute("INSERT INTO kurTablosu (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
     vt.commit()
     vt.close()
 
