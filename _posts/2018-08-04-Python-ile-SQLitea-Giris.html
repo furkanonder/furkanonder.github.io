@@ -76,18 +76,12 @@ Bir imleç oluşturalım.
 
 <pre class="brush:python"> imlec = vt.cursor()  </pre>
 
-Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım.
+Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım ve execute metodu ile çalıştıralım.
 (SQL hakkında daha fazla bilgi edinmek için <a href="https://www.w3schools.com/sql/" target="_blank"> burayı</a> ziyaret edebilirsiniz.)
 
 <pre class="brush:python">
-    sorgu = 'INSERT INTO kurTablosu (alis,satis,zaman) VALUES ('
-    sorgu += '"' + alis + '",'
-    sorgu += '"' + satis + '",'
-    sorgu += '"' + TarihVeSaat + '")'
+imlec.execute("INSERT INTO kurTablou (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
 </pre>
-Sorgumuzu çalıştıralım.
-
-<pre class="brush:python"> imlec.execute(sorgu)  </pre>
 
 Verilerimizi veritabanına commit metodu ile işleyelim.
 
@@ -99,7 +93,7 @@ close() metodu ile veritabanı bağlantımızı kapatalım.
 
 <br/><b>Neredeyse Bitti!</b><br/>
 
-Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış ,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.
+Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.
 
 <pre class="brush:python"> while True:
     alis, satis = dolar()
