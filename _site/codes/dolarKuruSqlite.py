@@ -4,44 +4,28 @@ import datetime
 import urllib.request
 import json
 
+
+vt = sqlite3.connect('kur.db')
+imlec = vt.cursor()
+
 try:
-    vt = sqlite3.connect('kur.db')
-    if (vt):
-        imlec = vt.cursor()
-        try:
-            imlec.execute('''
-            CREATE TABLE kurTablosu(
-            sira INTEGER PRIMARY KEY AUTOINCREMENT,
-            alis REAL,
-            satis REAL,
-            zaman VARCHAR )''')
-            print("Tablo oluşturuldu.")
-            vt.commit()
-            vt.close()
-        except:
-            print("Tablo oluşturulamadı veya tablo mevcut.")
-    else:
-        print("Veri tabanı bağlantısı kurulamadı.")
+    imlec.execute('''
+    CREATE TABLE kurTablosu(
+    sira INTEGER PRIMARY KEY AUTOINCREMENT,
+    alis VARCHAR,
+    satis VARCHAR,
+    zaman VARCHAR )''')
+    vt.commit()
+    vt.close()
 except:
-    print("Veri tabanı oluşturulamadı.")
+    print("Tablo oluşturulamadı veya tablo mevcut.")
 
 
-def vtEkle(alis, satis, tarihVeSaat):
+def vtEkle(alis, satis, TarihVeSaat):
     vt = sqlite3.connect('kur.db')
     imlec = vt.cursor()
-
-    sorgu = 'INSERT INTO kurTablosu (alis,satis,zaman) VALUES ('
-    sorgu += '"' + alis + '",'
-    sorgu += '"' + satis + '",'
-    sorgu += '"' + tarihVeSaat + '")'
-
-    try:
-        imlec.execute(sorgu)
-        vt.commit()
-        vt.close()
-    except:
-        print("Veriler eklenemedi.")
-
+    imlec.execute("INSERT INTO kurTablosu (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
+    vt.commit()
     vt.close()
 
 
@@ -53,21 +37,9 @@ def dolar():
 
     return veri['buying'], veri['selling']
 
-# vtEkle(str(alis), str(satis), str(datetime.datetime.now())) bu veri tipleri düzenlenmeli
-
 
 while True:
-    try:
-        alis, satis = dolar()
-        print("Dolar:\n", "Alış:", alis, "Satış:", satis, "Tarih ve Saat:", datetime.datetime.now())
-    except:
-        print("Veriler okunamadı.")
-        break
-
-    try:
-        vtEkle(str(alis), str(satis), str(datetime.datetime.now()))
-        print("Veriler veritabanına eklendi.")
-    except:
-        print("Veriler veritabanına eklenemedi.")
-
+    alis, satis = dolar()
+    print("Alış:", alis, "Satış:", satis, "Tarih ve Saat:", datetime.datetime.now())
+    vtEkle(str(alis), str(satis), str(datetime.datetime.now()))
     time.sleep(300)

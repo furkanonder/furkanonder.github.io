@@ -1,78 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Furkan Taha ÖNDER'in kişisel blogu">
-    <meta name="author" content="Furkan Taha ÖNDER" />
-    <meta name="keywords" content="Furkan Taha ONDER,yazılım,python,c,java">
-    <meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />   
-    <link rel="icon" href="/assets/images/favicon.ico">
-    <title>Python ile SQLite’a Giriş</title>
-
-    <link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.css"> 
-    
-    <link rel="alternate" type="application/rss+xml" title="Furkan Taha ÖNDER - " href="/feed.xml" />
-
-    <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/assets/css/custom.css" rel="stylesheet">
-    
-    <!-- Styles for 'Syntax Highlighting' of code -->
-    <link href="/assets/css/syntax.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/assets//js/ie-emulation-modes-warning.js"></script>
-
-    
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Furkan Taha ÖNDER'in kişisel blogu">
+<meta name="author" content="Furkan Taha ÖNDER" />
+<meta name="keywords" content="Furkan Taha ONDER,yazılım,python,c,java">
+<meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
+<link rel="icon" href="/assets/images/favicon.ico">
+<title>Python ile SQLite’a Giriş</title>
+<link rel="stylesheet" href="/assets/css/font-awesome.css">
+<link rel="alternate" type="application/rss+xml" title="Furkan Taha ÖNDER - " href="/feed.xml" />
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="/assets/css/custom.css" rel="stylesheet">
 
 </head>
-
 <body>
-    
-    <div class="container">
-        <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://furkanonder.github.io/">FurkanTahaÖNDER</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://furkanonder.github.io/">Anasayfa</a></li>
-            <li><a href="/hakkimda/">Hakkımda</a></li>
-            <li><a href="/arsiv/">Arşiv</a></li>
-          </ul>
-        </div>
+  <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://127.0.0.1:4000/">FurkanTahaÖNDER</a>
     </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://127.0.0.1:4000/">Anasayfa</a></li>
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/arsiv/">Arşiv</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <div id="ust" class="row">
-    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="text-primary">Python ile SQLite’a Giriş</h3>
-                <span class="text-muted">
-                <time datetime="4 August 2018">
-                     4 Ağustos 2018
-                </time>
-            	</span>
-            </div>
-            <div class="panel-body">
-                Merhaba,<br/>
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="text-primary">Python ile SQLite’a Giriş</h3>
+        <span class="text-muted">
+          <time datetime="4 August 2018">
+            4 Ağustos 2018
+          </time>
+      	</span>
+      </div>
+
+      <div class="panel-body">
+        Merhaba,<br/>
 Bu yazımızda Python’da Veritabanı Programlama’ya bir giriş yapıcağız.Bunun için Dolar/Tl kurundaki alış ,satış değerlerini ve bu değerleri elde ettiğimiz tarih ve saati veritabanına kaydeden küçük bir bot yazacağız.Veritabanını, içinde bilgi saklanabilen,birbiriyle ilişkili olan verilerin tutulduğu, yönetilebilir, güncellenebilir ve taşınabilir bilgi topluluğu olarak adlandırabiliriz.<br/><br/>
 
 <b>SQLite Ve Python</b><br/>
@@ -138,18 +119,12 @@ Bir imleç oluşturalım.
 
 <pre class="brush:python"> imlec = vt.cursor()  </pre>
 
-Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım.
+Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım ve execute metodu ile çalıştıralım.
 (SQL hakkında daha fazla bilgi edinmek için <a href="https://www.w3schools.com/sql/" target="_blank"> burayı</a> ziyaret edebilirsiniz.)
 
 <pre class="brush:python">
-    sorgu = 'INSERT INTO kurTablosu (alis,satis,zaman) VALUES ('
-    sorgu += '"' + alis + '",'
-    sorgu += '"' + satis + '",'
-    sorgu += '"' + TarihVeSaat + '")'
+imlec.execute("INSERT INTO kurTablosu (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
 </pre>
-Sorgumuzu çalıştıralım.
-
-<pre class="brush:python"> imlec.execute(sorgu)  </pre>
 
 Verilerimizi veritabanına commit metodu ile işleyelim.
 
@@ -161,7 +136,7 @@ close() metodu ile veritabanı bağlantımızı kapatalım.
 
 <br/><b>Neredeyse Bitti!</b><br/>
 
-Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış ,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.
+Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.
 
 <pre class="brush:python"> while True:
     alis, satis = dolar()
@@ -187,48 +162,35 @@ Veritabanına girmek <b>sqlite3 kur.db</b> yazalım
 Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder.github.io/tree/master/codes/dolarKuruSqlite.py/" target="_blank"> buraya </a>bakabilirsiniz.İyi çalışmalar dilerim.
 <br/>
 
-            </div>
+      </div>
 
-            <div class="panel-footer">
-                <ul class="pager panel-info">
-                    
-                    <li class="next">
-                        <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi" data-toggle="tooltip" data-placement="top" title="">Önceki Gönderi &rarr;</a>
-                    </li>
-                    
+      <div class="panel-footer">
+        <ul class="pager panel-info">
+          
+          <li class="next">
+            <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi" data-toggle="tooltip" data-placement="top" title="">Önceki Gönderi &rarr;</a>
+          </li>
+          
+          
+          <div class="post-date"></div>
+          <div class="sharing-icons">
+            <div class="post-date">Sosyal Medyada Paylaş!</div>
+          	<a href="https://twitter.com/intent/tweet?text=Python ile SQLite’a Giriş&amp;url=/Python-ile-SQLitea-Giris" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/Python-ile-SQLitea-Giris&amp;title=Python ile SQLite’a Giriş" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/Python-ile-SQLitea-Giris" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          </div>
+        </ul>
+      </div>
+    </div>
 
-                    
-                     <div class="post-date"></div>
-                      <div class="sharing-icons">
-                        <div class="post-date">Sosyal Medyada Paylaş!</div>
-						<a href="https://twitter.com/intent/tweet?text=Python ile SQLite’a Giriş&amp;url=/Python-ile-SQLitea-Giris" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=/Python-ile-SQLitea-Giris&amp;title=Python ile SQLite’a Giriş" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-
-                        <a href="https://plus.google.com/share?url=/Python-ile-SQLitea-Giris" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
-                    </div>
-                </ul>
-            </div>
-        </div>
-
+    
+    <div class="panel panel-info">
+      <div class="panel-body">
         
-        <div class="panel panel-info">
-            <div class="panel-body">
-                
 <div class="comments">
-    <div id="disqus_thread"></div>
+  <div id="disqus_thread"></div>
 	<script>
-
-	/**
-	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-	/*
-	var disqus_config = function () {
-	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	};
-	*/
-	(function() { // DON'T EDIT BELOW THIS LINE
+	(function() {
 	var d = document, s = d.createElement('script');
 	s.src = 'https://furkantahaonder.disqus.com/embed.js';
 	s.setAttribute('data-timestamp', +new Date());
@@ -238,63 +200,62 @@ Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder
 	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 
-            </div>
-        </div>
-        
-    </div>
 
-    <div class="row2">
-	    <div class="col-md-12">
-	        <div class="panel panel-danger">
-	            <div class="panel-heading">
-	                <span class="text-primary"><b>Son Gönderiler</b></span>
-	            </div>
-	            <div class="panel-body">
-	                <ul>
-	                    
-	                        <li>
-	                            <a href="/Python-ile-SQLitea-Giris">Python ile SQLite’a Giriş</a>
-	                        </li>
-	                    
-	                        <li>
-	                            <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi">Monte Carlo Methodu ile Pi Sayısının Hesaplanması</a>
-	                        </li>
-	                    
-	                        <li>
-	                            <a href="/Blog-Hakkinda">Blog Hakkında</a>
-	                        </li>
-	                    
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
+      </div>
     </div>
+    
+  </div>
+
+  <div class="row2">
+    <div class="col-md-12">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <span class="text-primary"><b>Son Gönderiler</b></span>
+        </div>
+        <div class="panel-body">
+          <ul>
+            
+            <li>
+              <a href="/Python-ile-SQLitea-Giris">Python ile SQLite’a Giriş</a>
+            </li>
+            
+            <li>
+              <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi">Monte Carlo Metodu ile Pi Sayısının Hesaplanması</a>
+            </li>
+            
+            <li>
+              <a href="/Blog-Hakkinda">Blog Hakkında</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
-    </div>
-
-    <footer class="footer">
+  </div>
+  <footer class="footer">
   <div class="container footerBox">
     <p class="copyright text-muted">
       &#169; 2018 Furkan Taha ÖNDER.Powered by Github Pages and Jekyll.
       <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
-      <a href="https://furkanonder.github.io/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
+      <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
     </p>
   </div>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
- 
-    
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+
+  
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108363583-1"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-
 	  gtag('config', 'UA-108363583-1');
 	</script>
 
@@ -302,5 +263,4 @@ Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder
 
 
 </body>
-
 </html>

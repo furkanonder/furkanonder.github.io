@@ -3,94 +3,92 @@ layout: default
 comments: true
 ---
 <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://furkanonder.github.io/">FurkanTahaÖNDER</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://furkanonder.github.io/">Anasayfa</a></li>
-            <li><a href="/hakkimda/">Hakkımda</a></li>
-            <li><a href="/arsiv/">Arşiv</a></li>
-          </ul>
-        </div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://127.0.0.1:4000/">FurkanTahaÖNDER</a>
     </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://127.0.0.1:4000/">Anasayfa</a></li>
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/arsiv/">Arşiv</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <div id="ust" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="text-primary">{{ page.title }}</h3>
+        <span class="text-muted">
+          <time datetime="{{ page.date | date: "%-d %B %Y" }}">
+            {{ page.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
+          </time>
+      	</span>
+      </div>
+
+      <div class="panel-body">
+        {{ content }}
+      </div>
+
+      <div class="panel-footer">
+        <ul class="pager panel-info">
+          {% if page.previous.url %}
+          <li class="next">
+            <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Önceki Gönderi &rarr;</a>
+          </li>
+          {% endif %}
+          {% if page.next.url %}
+          <li class="previous">
+            <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Sonraki Gönderi</a>
+          </li>
+          {% endif %}
+          <div class="post-date">{{ site.data.settings.sharing_button_prompt }}</div>
+          <div class="sharing-icons">
+            <div class="post-date">Sosyal Medyada Paylaş!</div>
+          	<a href="https://twitter.com/intent/tweet?text={{ page.title }}&amp;url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.github.url }}{{ page.url }}&amp;title={{ page.title }}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    {% if page.comments %}
+    <div class="panel panel-info">
+      <div class="panel-body">
+        {% include disqus.html %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="row2">
     <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="text-primary">{{ page.title }}</h3>
-                <span class="text-muted">
-                <time datetime="{{ page.date | date: "%-d %B %Y" }}">
-                     {{ page.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
-                </time>
-            	</span>
-            </div>
-            <div class="panel-body">
-                {{ content }}
-            </div>
-
-            <div class="panel-footer">
-                <ul class="pager panel-info">
-                    {% if page.previous.url %}
-                    <li class="next">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Önceki Gönderi &rarr;</a>
-                    </li>
-                    {% endif %}
-
-                    {% if page.next.url %}
-                    <li class="previous">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top"
-                        title="{{page.previous.title}}">&larr; Sonraki Gönderi</a>
-                    </li>
-                    {% endif %}
-                     <div class="post-date">{{ site.data.settings.sharing_button_prompt }}</div>
-                      <div class="sharing-icons">
-                        <div class="post-date">Sosyal Medyada Paylaş!</div>
-						<a href="https://twitter.com/intent/tweet?text={{ page.title }}&amp;url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.github.url }}{{ page.url }}&amp;title={{ page.title }}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-
-                        <a href="https://plus.google.com/share?url={{ site.github.url }}{{ page.url }}" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
-                    </div>
-                </ul>
-            </div>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <span class="text-primary"><b>Son Gönderiler</b></span>
         </div>
-
-        {% if page.comments %}
-        <div class="panel panel-info">
-            <div class="panel-body">
-                {% include disqus.html %}
-            </div>
+        <div class="panel-body">
+          <ul>
+            {% for post in site.posts offset: 0 limit: 3  %}
+            <li>
+              <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
         </div>
-        {% endif %}
+      </div>
     </div>
+  </div>
 
-    <div class="row2">
-	    <div class="col-md-12">
-	        <div class="panel panel-danger">
-	            <div class="panel-heading">
-	                <span class="text-primary"><b>Son Gönderiler</b></span>
-	            </div>
-	            <div class="panel-body">
-	                <ul>
-	                    {% for post in site.posts offset: 0 limit: 3  %}
-	                        <li>
-	                            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-	                        </li>
-	                    {% endfor %}
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-    </div>
 </div>
 
