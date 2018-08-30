@@ -5,9 +5,25 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 15 Aug 2018 19:24:38 +0300</pubDate>
-    <lastBuildDate>Wed, 15 Aug 2018 19:24:38 +0300</lastBuildDate>
+    <pubDate>Thu, 30 Aug 2018 22:17:20 +0300</pubDate>
+    <lastBuildDate>Thu, 30 Aug 2018 22:17:20 +0300</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>Linux ve Sinyaller</title>
+        <description>Merhaba,&lt;br/&gt; Bu yazı da Linux işletim sisteminde yer alan sinyallerden bahsedeceğim.Sinyali kısaca tanımlamak gerekirse; bir prosese,proses tarafından ya da başka bir proses tarafından gönderilen mesaj olarak tanımlayabiliriz.Bu mesaja göre kapatma,durdurma ve başlatma gibi sistemsel eylemler gerçekleşebilir. &lt;br/&gt;&lt;br/&gt; Sistemimizde bulunan sinyalleri öğrenmek için terminale &lt;pre class=&quot;brush:python&quot;&gt; kill -l &lt;/pre&gt; komutunu yazalım.&lt;br/&gt;&lt;br/&gt; &lt;a href=&quot;/assets/images/sinyaller.png&quot; imageanchor=&quot;1&quot;&gt;&lt;img style=&quot;display: block;margin: 0 auto;&quot; src=&quot;/assets/images/sinyaller.png&quot; /&gt;&lt;/a&gt;&lt;br/&gt; Resimde görüldüğü üzere sistemimizde 64 adet sinyal bulunuyor. Burada yer alan sinyaller içerisinden Sonlandırma Sinyalleri’ni inceleyeceğiz. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;SIGINT&lt;/b&gt;&lt;br/&gt; SIGINT sinyali,signal(sinyal) ve interrupt (kesmek) kelimelerinden türetilmiştir.Çalışan prosesleri iptal etmek için gönderirilir.Ctrl+Z kombinasyonu klavyeden uygulanarak bu sinyal gönderilebilir. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;SIGTERM&lt;/b&gt;&lt;br/&gt; SIGTERM sinyali,signal(sinyal) ve terminate (sona...</description>
+        <pubDate>Thu, 30 Aug 2018 01:30:00 +0300</pubDate>
+        <link>http://localhost:4000/Linux-ve-Sinyaller</link>
+        <guid isPermaLink="true">http://localhost:4000/Linux-ve-Sinyaller</guid>
+        
+        <category>Linux ve Sinyaller</category>
+        
+        
+        <category>Linux</category>
+        
+        <category>Sinyaller</category>
+        
+      </item>
     
       <item>
         <title>Python ile SQLite’a Giriş</title>

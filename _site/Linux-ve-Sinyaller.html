@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Furkan Taha ÖNDER'in kişisel blogu">
+<meta name="author" content="Furkan Taha ÖNDER" />
+<meta name="keywords" content="Furkan Taha ONDER,yazılım,python,c,java">
+<meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
+<link rel="icon" href="/assets/images/favicon.ico">
+<title>Linux ve Sinyaller</title>
+<link rel="stylesheet" href="/assets/css/font-awesome.css">
+<link rel="alternate" type="application/rss+xml" title="Furkan Taha ÖNDER - " href="/feed.xml" />
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="/assets/css/custom.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://furkanonder.github.io/">FurkanTahaÖNDER</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://furkanonder.github.io/">Anasayfa</a></li>
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/arsiv/">Arşiv</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="ust" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="text-primary">Linux ve Sinyaller</h3>
+        <span class="text-muted">
+          <time datetime="30 August 2018">
+            30 Ağustos 2018
+          </time>
+      	</span>
+      </div>
+
+      <div class="panel-body">
+        Merhaba,<br/>
+Bu yazı da Linux işletim sisteminde yer alan sinyallerden bahsedeceğim.Sinyali kısaca tanımlamak gerekirse; bir prosese,proses tarafından ya da başka bir proses tarafından gönderilen mesaj olarak tanımlayabiliriz.Bu mesaja göre kapatma,durdurma ve başlatma gibi  sistemsel eylemler gerçekleşebilir.
+<br/><br/>
+Sistemimizde bulunan sinyalleri öğrenmek için terminale
+<pre class="brush:python"> kill -l </pre>
+komutunu yazalım.<br/><br/>
+<a href="/assets/images/sinyaller.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/sinyaller.png" /></a><br/>
+Resimde görüldüğü üzere sistemimizde 64 adet sinyal bulunuyor. Burada yer alan sinyaller
+içerisinden Sonlandırma Sinyalleri’ni inceleyeceğiz.
+
+<br/><br/><b>SIGINT</b><br/>
+SIGINT sinyali,signal(sinyal) ve interrupt (kesmek) kelimelerinden türetilmiştir.Çalışan prosesleri iptal etmek için gönderirilir.Ctrl+Z kombinasyonu klavyeden uygulanarak bu sinyal gönderilebilir.
+
+<br/><br/><b>SIGTERM</b><br/>
+SIGTERM sinyali,signal(sinyal) ve terminate (sona erdirmek) kelimelerinden türetilmiştir. Prosesin sona erdirilmesi için kullanılır.Bu sinyal prosesi sonlandırmak için bazen yetersiz kalabilir. Çünkü prosese gelen sinyal engellenebilir ya da yoksayılabilir. Bu gibi durumlarda ise SIGKILL sinyali gönderilir.
+
+<br/><br/><b>SIGKILL</b><br/>
+SIGKILL sinyali, bir prosese gönderildiğinde bu proses her zaman son bulur.Bu sinyal yakalanamaz ya da yok sayılamaz.
+
+<br/><h1>Sinyal Göndermek</h1>
+Sistemimizde çalışan  proseslere sinyal göndereceğiz.Çalışan prosesleri  görmek için terminale
+<pre class="brush:python">top</pre>
+yazdık.
+<a href="/assets/images/top.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/top.png" /></a><br/>
+Sistemde çalışan prosesleri görüyorsunuz.Listenin başına baktığımızda, en solunda prosesin PID değerini  sonunda ise çalışan prosesisin adı olan  firefox ‘u görüyorsunuz.Sinyal gönderirken PID değerini kullanacağız.Firefox prosesine bir kill sinyali gönderilim.Bunu 2 şekilde yapabiliriz.<br/><br/>
+<b>kill</b> <b>Sinyal adı</b> ve <b>PID değerini</b> yazarak sinyal gönderebiliriz.
+<pre class="brush:python"> kill -KILL 18229 </pre>
+
+Başka bir  yöntem ise <b>kill</b> <b>sinyal numarası</b> ve <b>PID</b> değerini yazarak sinyal göndermektir.Yazımızın başında terminale kill-l yazarak sinyallari incelediğimizde, KILL sinyalinin numarasını 9 olarak görmüştük.
+<pre class="brush:python"> kill -9 18229 </pre>
+
+
+<br/><h1>Sinyal Yakalamak</h1>
+Sinyal göndermeyi öğrendiğimize göre sinyal yakalamayı da öğrenmeye başlayabiliriz.Sinyal yakalamak için bir bash scripti yazacağız.
+Bash betiğinde sinyaller trap deyimi ile yakalanılar. <b>trap</b> <b>komut adı</b> <b>sinyal numarası</b> şeklinde trap deyimini kullanabiliriz. Biz betiğimizde echo komutunu kullanarak gelen sinyal numarası karşılık yakalanan sinyalin alındığını belirten bir mesaj yazdıracağız.Bununla birlikte bir for döngüsü kullanarak birer saniye aralıklarla “sinyal bekleniyor...” yazısını yazarak sinyal in gelmesini beklemeye başlıyacağız.<br><br/>
+
+<pre class="brush:python">
+#!/bin/bash
+trap ' echo "SIGTERM sinyali yakalandi!" ' 2
+
+trap ' echo "SIGINT sinyali yakalandi!" ' 15
+
+for (( c=1; c<200; c++ ))
+    do
+       echo "Sinyal bekleniyor..."
+       sleep 1
+    done
+</pre>
+<br>
+Betiğimizi sinyal.sh olarak kaydedelim.Çalıştırma izni vermek ve çalıştırmak için sırasıyla terminale
+
+<pre class="brush:python">chmod +x sinyal.sh</pre>
+
+<pre class="brush:python">./sinyal.sh</pre>
+
+yazalım.<br/><br/>
+
+Çalışan betiğimizin PID değerini kullanarak sinyal gönderebiliriz.Bu değeri bulmak için terminale
+
+<pre class="brush:python">ps -e | grep sinyal</pre>
+
+yazalım.<br/>
+<a href="/assets/images/ps-e.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/ps-e.png" /></a><br/>
+
+Betiğimizin PID değerini öğrendiğimize göre sinyal göndermeye başlayabiliriz.
+TERM sinyalini,
+<pre class="brush:python">kill -2 11542</pre>
+<pre class="brush:python">kill 11542</pre>
+<pre class="brush:python">kill -TERM 11542</pre>
+bu üç komutdan birini kullanarak ya da betik penceremizin üzerine gelerek <b>ctrl+c</b> tuşlarını kullanarak da TERM sinyalini gönderelim.
+<br><br>
+INT sinyalini
+<pre class="brush:python">kill -15 11542</pre>
+<pre class="brush:python">kill -INT 11542</pre>
+bu iki komutdan birini kullanarak gönderelim.
+<br><br>
+Son olarak ise KILL sinyalini
+<pre class="brush:python">kill -9 11542</pre>
+<pre class="brush:python">kill -KILL 11542</pre>
+bu iki komutdan birini kullanarak gönderelim.
+
+<a href="/assets/images/betik.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/betik.png" /></a><br/>
+
+Yazımızın başında söyledeğimiz üzere KILL sinyalinin bir prosese gönderilmesi durumda bu proses her zaman son bulacağını söylemiştik.Resimde görüldüğü üzere prosesimizin çalışması KILL sinyalinden dolayı killed yazarak son bulmuş oldu. Yazımızın sonuna geldik.Anlamadığınız yerleri yorum olarak yazarsanız,yardımcı olabilirim.İyi Çalışmalar.
+
+      </div>
+
+      <div class="panel-footer">
+        <ul class="pager panel-info">
+          
+          <li class="next">
+            <a href="/Python-ile-SQLitea-Giris" data-toggle="tooltip" data-placement="top" title="">Önceki Gönderi &rarr;</a>
+          </li>
+          
+          
+          <div class="post-date"></div>
+          <div class="sharing-icons">
+            <div class="post-date">Sosyal Medyada Paylaş!</div>
+          	<a href="https://twitter.com/intent/tweet?text=Linux ve Sinyaller&amp;url=/Linux-ve-Sinyaller" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/Linux-ve-Sinyaller&amp;title=Linux ve Sinyaller" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/Linux-ve-Sinyaller" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="panel panel-info">
+      <div class="panel-body">
+        
+<div class="comments">
+  <div id="disqus_thread"></div>
+	<script>
+	(function() {
+	var d = document, s = d.createElement('script');
+	s.src = 'https://furkantahaonder.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row2">
+    <div class="col-md-12">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <span class="text-primary"><b>Son Gönderiler</b></span>
+        </div>
+        <div class="panel-body">
+          <ul>
+            
+            <li>
+              <a href="/Linux-ve-Sinyaller">Linux ve Sinyaller</a>
+            </li>
+            
+            <li>
+              <a href="/Python-ile-SQLitea-Giris">Python ile SQLite’a Giriş</a>
+            </li>
+            
+            <li>
+              <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi">Monte Carlo Metodu ile Pi Sayısının Hesaplanması</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+  <footer class="footer">
+  <div class="container footerBox">
+    <p class="copyright text-muted">
+      &#169; 2018 Furkan Taha ÖNDER.Powered by Github Pages and Jekyll.
+      <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
+      <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108363583-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-108363583-1');
+	</script>
+
+
+
+
+</body>
+</html>
