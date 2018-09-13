@@ -2,9 +2,8 @@
 title: Monte Carlo Metodu ile Pi Sayısının Hesaplanması
 comments: true
 layout: post
-show-avatar: true
 date: '2018-01-14'
-author: furkan taha onder
+author: Furkan Önder
 categories:
 - Python
 - Java
@@ -41,7 +40,7 @@ for atis_sayisi in range(0, 1000000):
     b = random.random()
     z= (a*a+b*b)**0.5
     if z < 1:
-    	icerde+= 1
+        icerde+= 1
 atis_sayisi+= 1
 
 print("Pi sayisinin yaklasik degeri:",4.0 * icerde / atis_sayisi)
@@ -58,13 +57,13 @@ int main(){
     srand(time(NULL));
 
     for (int i = 0; i < 1000000;i++){
-    	atis_sayisi++;
-    	a = (double)rand()/RAND_MAX*2.0-1.0;
-   	 	b = (double)rand()/RAND_MAX*2.0-1.0;
-   	   	z = sqrt(pow(a,2)+pow(b,2));
-    	if(z<1)
-    	icerdeki+=1;
-   	}
+        atis_sayisi++;
+        a = (double)rand()/RAND_MAX*2.0-1.0;
+        b = (double)rand()/RAND_MAX*2.0-1.0;
+        z = sqrt(pow(a,2)+pow(b,2));
+        if(z<1)
+        icerdeki+=1;
+    }
 
     pi = 4*(icerdeki/atis_sayisi)*1.0;
     printf("Pi sayisinin yaklasik degeri:%f\n",pi );
@@ -77,24 +76,24 @@ Java:
 import java.util.Random;
 
 public class MonteCarlo {
-	private static Random rgen = new Random();
+    private static Random rgen = new Random();
 
     public static void main(String[] args) {
 
-	    int atis_sayisi = 0;
-	    int icerde = 0;
+        int atis_sayisi = 0;
+        int icerde = 0;
 
-	    for(int i = 0; i<1000000; i++){
-	    	double a = 2 * rgen.nextDouble() - 1;
-	        double b = 2 * rgen.nextDouble() - 1;
-			atis_sayisi+=1;
-			if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
-				icerde+=1;
-			}
-		}
-	    double pi = 4*(icerde*1.0/atis_sayisi);
-	    System.out.println("Pi sayisinin yaklasik degeri: "+pi);
-	}
+        for(int i = 0; i<1000000; i++){
+            double a = 2 * rgen.nextDouble() - 1;
+            double b = 2 * rgen.nextDouble() - 1;
+            atis_sayisi+=1;
+            if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
+                icerde+=1;
+            }
+        }
+        double pi = 4*(icerde*1.0/atis_sayisi);
+        System.out.println("Pi sayisinin yaklasik degeri: "+pi);
+    }
 }
 </pre>
 

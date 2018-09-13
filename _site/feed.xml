@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Furkan Taha ÖNDER</title>
+    <title>Furkan  Önder</title>
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 30 Aug 2018 22:17:20 +0300</pubDate>
-    <lastBuildDate>Thu, 30 Aug 2018 22:17:20 +0300</lastBuildDate>
+    <pubDate>Thu, 13 Sep 2018 11:06:53 +0300</pubDate>
+    <lastBuildDate>Thu, 13 Sep 2018 11:06:53 +0300</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
@@ -59,7 +59,7 @@
     
       <item>
         <title>Blog Hakkında</title>
-        <description>Merhaba,&lt;br /&gt;Ben Furkan, bu blogun sahibiyim ve Bilgisayar Mühendisliği öğrencisiyim.Öğrendiklerimi ve tecrübelerimi paylaşmayı seviyorum.Bu yüzden blog yazmaya karar verdim.Daha önce  blog yazma konusunda biraz tecrübem oldu. &lt;a href=&quot;http://onderfurkantaha.blogspot.com.tr/&quot; target=&quot;_blank&quot;&gt;http://onderfurkantaha.blogspot.com.tr/&lt;/a&gt; adresindeki blog üzerinde  yazdığım yazıları buraya taşıdım.Bu arada bu blog hakkında biraz bilgi vermek istiyorum.Blog jekyll(blog framework)adı verilen&amp;nbsp; statik site oluşturucusu ile oluşutruldu,hosting ihtiyacını ise github pages tarafından karşılandı.Şimdilik benden bu kadar diğer yazımlarımda görüşmek üzere...</description>
+        <description>Merhaba,&lt;br /&gt;Ben Furkan, bu blogun sahibiyim ve Bilgisayar Mühendisliği öğrencisiyim.Öğrendiklerimi ve tecrübelerimi paylaşmayı seviyorum.Bu yüzden blog yazmaya karar verdim.Daha önce blog yazma konusunda biraz tecrübem oldu. &lt;a href=&quot;http://onderfurkantaha.blogspot.com.tr/&quot; target=&quot;_blank&quot;&gt;http://onderfurkantaha.blogspot.com.tr/&lt;/a&gt; adresindeki blog üzerinde yazdığım yazıları buraya taşıdım.Bu arada bu blog hakkında biraz bilgi vermek istiyorum.Blog jekyll(blog framework)adı verilen&amp;nbsp; statik site oluşturucusu ile oluşutruldu,hosting ihtiyacını ise github pages tarafından karşılandı.Şimdilik benden bu kadar diğer yazımlarımda görüşmek üzere...</description>
         <pubDate>Sat, 21 Oct 2017 00:00:00 +0300</pubDate>
         <link>http://localhost:4000/Blog-Hakkinda</link>
         <guid isPermaLink="true">http://localhost:4000/Blog-Hakkinda</guid>

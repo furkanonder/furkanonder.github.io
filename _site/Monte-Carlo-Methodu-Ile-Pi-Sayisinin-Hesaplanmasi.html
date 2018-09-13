@@ -4,14 +4,14 @@
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Furkan Taha ÖNDER'in kişisel blogu">
-<meta name="author" content="Furkan Taha ÖNDER" />
-<meta name="keywords" content="Furkan Taha ONDER,yazılım,python,c,java">
+<meta name="description" content="Furkan Önder'in kişisel blogu">
+<meta name="author" content="Furkan  Önder" />
+<meta name="keywords" content="Furkan Önder,yazılım,python,c,java">
 <meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
 <link rel="icon" href="/assets/images/favicon.ico">
 <title>Monte Carlo Metodu ile Pi Sayısının Hesaplanması</title>
 <link rel="stylesheet" href="/assets/css/font-awesome.css">
-<link rel="alternate" type="application/rss+xml" title="Furkan Taha ÖNDER - " href="/feed.xml" />
+<link rel="alternate" type="application/rss+xml" title="Furkan  Önder - " href="/feed.xml" />
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 <link href="/assets/css/custom.css" rel="stylesheet">
@@ -28,7 +28,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="https://furkanonder.github.io/">FurkanTahaÖNDER</a>
+      <a class="navbar-brand" href="https://furkanonder.github.io/">furkanönder</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -81,7 +81,7 @@ for atis_sayisi in range(0, 1000000):
     b = random.random()
     z= (a*a+b*b)**0.5
     if z < 1:
-    	icerde+= 1
+        icerde+= 1
 atis_sayisi+= 1
 
 print("Pi sayisinin yaklasik degeri:",4.0 * icerde / atis_sayisi)
@@ -98,13 +98,13 @@ int main(){
     srand(time(NULL));
 
     for (int i = 0; i < 1000000;i++){
-    	atis_sayisi++;
-    	a = (double)rand()/RAND_MAX*2.0-1.0;
-   	 	b = (double)rand()/RAND_MAX*2.0-1.0;
-   	   	z = sqrt(pow(a,2)+pow(b,2));
-    	if(z<1)
-    	icerdeki+=1;
-   	}
+        atis_sayisi++;
+        a = (double)rand()/RAND_MAX*2.0-1.0;
+        b = (double)rand()/RAND_MAX*2.0-1.0;
+        z = sqrt(pow(a,2)+pow(b,2));
+        if(z<1)
+        icerdeki+=1;
+    }
 
     pi = 4*(icerdeki/atis_sayisi)*1.0;
     printf("Pi sayisinin yaklasik degeri:%f\n",pi );
@@ -117,29 +117,28 @@ Java:
 import java.util.Random;
 
 public class MonteCarlo {
-	private static Random rgen = new Random();
+    private static Random rgen = new Random();
 
     public static void main(String[] args) {
 
-	    int atis_sayisi = 0;
-	    int icerde = 0;
+        int atis_sayisi = 0;
+        int icerde = 0;
 
-	    for(int i = 0; i<1000000; i++){
-	    	double a = 2 * rgen.nextDouble() - 1;
-	        double b = 2 * rgen.nextDouble() - 1;
-			atis_sayisi+=1;
-			if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
-				icerde+=1;
-			}
-		}
-	    double pi = 4*(icerde*1.0/atis_sayisi);
-	    System.out.println("Pi sayisinin yaklasik degeri: "+pi);
-	}
+        for(int i = 0; i<1000000; i++){
+            double a = 2 * rgen.nextDouble() - 1;
+            double b = 2 * rgen.nextDouble() - 1;
+            atis_sayisi+=1;
+            if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
+                icerde+=1;
+            }
+        }
+        double pi = 4*(icerde*1.0/atis_sayisi);
+        System.out.println("Pi sayisinin yaklasik degeri: "+pi);
+    }
 }
 </pre>
 
 Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim. İyi Çalışmalar.
-
       </div>
 
       <div class="panel-footer">
@@ -222,8 +221,10 @@ Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilir
   <footer class="footer">
   <div class="container footerBox">
     <p class="copyright text-muted">
-      &#169; 2018 Furkan Taha ÖNDER.Powered by Github Pages and Jekyll.
+      &#169; 2018 Furkan Önder.Powered by Github Pages and Jekyll.
       <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
+      <a href="https://www.linkedin.com/in/furkan-onder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-linkedin" ></i></a>
+      <a href="https://medium.com/@furkanonder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-medium" ></i></a>
       <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
     </p>
   </div>
