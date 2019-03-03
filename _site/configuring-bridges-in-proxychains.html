@@ -9,7 +9,7 @@
 <meta name="keywords" content="Furkan Önder,yazılım,python,c,java">
 <meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
 <link rel="icon" href="/assets/images/favicon.ico">
-<title>Blog Hakkında</title>
+<title>Configuring bridges in proxychains</title>
 <link rel="stylesheet" href="/assets/css/font-awesome.css">
 <link rel="alternate" type="application/rss+xml" title="Furkan  Önder - " href="/feed.xml" />
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -44,36 +44,70 @@
   <div class="col-md-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="text-primary">Blog Hakkında</h3>
+        <h3 class="text-primary">Configuring bridges in proxychains</h3>
         <span class="text-muted">
-          <time datetime="21 October 2017">
-            21 Ekim 2017
+          <time datetime="3 March 2019">
+            3 Mart 2019
           </time>
       	</span>
       </div>
 
       <div class="panel-body">
-        Merhaba,<br />Ben Furkan, bu blogun sahibiyim ve Bilgisayar Mühendisliği öğrencisiyim.Öğrendiklerimi ve tecrübelerimi paylaşmayı seviyorum.Bu yüzden blog yazmaya karar verdim.Daha önce blog yazma konusunda biraz tecrübem oldu. <a href="http://onderfurkantaha.blogspot.com.tr/" target="_blank">http://onderfurkantaha.blogspot.com.tr/</a> adresindeki blog üzerinde yazdığım yazıları buraya taşıdım.Bu arada bu blog hakkında biraz bilgi vermek istiyorum.Blog jekyll(blog framework)adı verilen&nbsp; statik site oluşturucusu ile oluşutruldu,hosting ihtiyacını ise github pages tarafından karşılandı.Şimdilik benden bu kadar diğer yazımlarımda görüşmek üzere...
+        <p>We are using sqlmap, nmap, nikto tools  etc. while dealing with cyber security. Sometimes we need to be anonymous when using these tools for testing. We are able to use proxychains for this.But.…<br /><br /></p>
+
+<p><a href="/assets/images/proxychains_1.png" imageanchor="1"><img style="display: block;margin: 0 auto;width: 43em;" src="/assets/images/proxychains_1.png" /></a><br /></p>
+
+<p>Damn it! Most likely tor is banned in your country so this method doesn’t work. Let’s fix this problem.Solution to use the bridge. We need to make some changes to the /etc/proxychains.conf file for add bridge.<br /></p>
+
+<p>You will see 3 different chain configuration in the file.</p>
+
+<p>• dynamic_chain <br />
+• strict_chain <br />
+• random_chain <br /></p>
+
+<p>We will use dynamic_chain. Remove the # in front of the dynamic_chain and add the # in front of the strict_chain and random_chain.<br /></p>
+
+<p>Now, we need to make some changes to /etc/tor/torrc. At the bottom of the file we are writing these lines.</p>
+
+<pre class="brush:python">
+UseBridges 1
+ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed
+Bridge obfs4 "bridge info"
+Bridge obfs4 "bridge info”
+Bridge obfs4 "bridge info"
+</pre>
+
+<p>Paste the bridge  get from https://bridges.torproject.org/ to the section “bridge info”.<br /><br />
+It look like this:
+<a href="/assets/images/proxychains_2.png" imageanchor="1"><img style="display: block;margin: 0 auto; width: 50em;" src="/assets/images/proxychains_2.png" /></a><br /></p>
+
+<p>Now we need to set up a few programs. These are obfs4proxy and tor. After installing the programs, restart the tor service.</p>
+<pre class="brush:python">
+systemctl restart tor
+</pre>
+<p>Let’s try it again.
+<br /><br />
+<a href="/assets/images/proxychains_3.png" imageanchor="1"><img style="display: block;margin: 0 auto;width: 43em;" src="/assets/images/proxychains_3.png" /></a><br />
+That’s it! There are tor exit nodes at <a href="https://www.dan.me.uk/torlist/">https://www.dan.me.uk/torlist/</a>.
+You can be sure that your ip address is using tor by looking at list.</p>
+
+
       </div>
 
       <div class="panel-footer">
         <ul class="pager panel-info">
           
           <li class="next">
-            <a href="/Python-ve-C-ile-Fibonacci-Dizisi" data-toggle="tooltip" data-placement="top" title="Monte Carlo Metodu ile Pi Sayısının Hesaplanması">Önceki Gönderi &rarr;</a>
+            <a href="/Linux-ve-Sinyaller" data-toggle="tooltip" data-placement="top" title="">Önceki Gönderi &rarr;</a>
           </li>
           
-          
-          <li class="previous">
-            <a href="/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi" data-toggle="tooltip" data-placement="top" title="Python ve C ile Fibonacci Dizisi">&larr; Sonraki Gönderi</a>
-          </li>
           
           <div class="post-date"></div>
           <div class="sharing-icons">
             <div class="post-date">Sosyal Medyada Paylaş!</div>
-          	<a href="https://twitter.com/intent/tweet?text=Blog Hakkında&amp;url=/Blog-Hakkinda" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=/Blog-Hakkinda&amp;title=Blog Hakkında" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-            <a href="https://plus.google.com/share?url=/Blog-Hakkinda" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          	<a href="https://twitter.com/intent/tweet?text=Configuring bridges in proxychains&amp;url=/configuring-bridges-in-proxychains" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/configuring-bridges-in-proxychains&amp;title=Configuring bridges in proxychains" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/configuring-bridges-in-proxychains" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
           </div>
         </ul>
       </div>
