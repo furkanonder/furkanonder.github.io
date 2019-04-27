@@ -5,9 +5,27 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Mar 2019 20:52:05 +0300</pubDate>
-    <lastBuildDate>Sun, 03 Mar 2019 20:52:05 +0300</lastBuildDate>
+    <pubDate>Sun, 28 Apr 2019 00:38:34 +0300</pubDate>
+    <lastBuildDate>Sun, 28 Apr 2019 00:38:34 +0300</lastBuildDate>
     <generator>Jekyll v3.6.3</generator>
+    
+      <item>
+        <title>Onion Routing Nasıl Çalışır?</title>
+        <description>&lt;p&gt;Tor projesi ilk olarak ABD Deniz Kuvvetleri tarafından askeri bir gizli ağ projesi olarak haberleşmesini korumak için geliştirildi. Ancak 2004 yılına gelindiğinde ABD Deniz Harp Araştırma Laboratuvarı Tor’u açık kaynak lisanslı bir proje haline getirip herkese açtı.&lt;br /&gt;&lt;/p&gt; &lt;p&gt;Günümüzde, bir çok amaç için tor kullanabiliyor.Örneğin, normal bir internet kullanıcıları arama motorları tarafından bilgilerinin toplanmalarını ve satılmalarından pek hoşlanmayabilirler.Arama motorlarında arattığınız bir içeriği sonraki sayfalarda reklam olarak hiç gördünüz mü?İşte bu bir sadece gözle görülür bir örnek.Tor,insan hakları aktivistleri ve gazeteciler tarafından kullanılır.Örneğin, bir bölgede yaşanan istismarları ve bildirmek için kullanılabilir. Bu bölgeler yasalar dahilinde olsalar bile, güvenli oldukları anlamına gelmez....</description>
+        <pubDate>Sun, 28 Apr 2019 00:30:00 +0300</pubDate>
+        <link>http://localhost:4000/onion-routing-nasil-calisir</link>
+        <guid isPermaLink="true">http://localhost:4000/onion-routing-nasil-calisir</guid>
+        
+        <category>oninon routing nedir</category>
+        
+        <category>oninon routing nasıl çalışır</category>
+        
+        
+        <category>tor</category>
+        
+        <category>oninon routing</category>
+        
+      </item>
     
       <item>
         <title>Configuring bridges in proxychains</title>
