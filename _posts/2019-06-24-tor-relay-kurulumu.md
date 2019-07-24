@@ -21,7 +21,7 @@ Merhaba,<br>
 - Hetzner Online GmbH (AS24940)
 - DigitalOcean, LLC (AS14061)
 
-firmalarını tavsiye etmemizi istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki 
+firmalarını tavsiye __etmeMEmizi__ istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki 
 [detailed list of all the Tor-friendly hosting providers](ttps://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs)
 kısmından öğrenebilirsiniz.
 
@@ -58,7 +58,7 @@ SSH servisimizi tekrar başlatalım.
 sudo systemctl restart sshd.service
 ```
 
-<h1>Iptables Kurulumu</h1>
+<h1>Iptables Kurulumu</h1
 Sunucumuzda terminale
 ```
 sudo yum install iptables-services
