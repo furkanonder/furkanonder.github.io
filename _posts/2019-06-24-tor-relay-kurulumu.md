@@ -11,24 +11,23 @@ tags:
 - tor relay nasıl kurulur
 ---
 
-Merhaba,<br>
-Önceki yazımda Tor’un yapısında bulanan Onion Routing’in nasıl çalıştığı ile ilgili bir yazı yazmıştım.Şimdi ise merak edenler olabilceğini düşündüğüm için bir Tor ağında bir relay kurulumunun nasıl olacağını anlatacağım.Bu yazıda middle(ortanca) relay kuracağız.<br>
+Merhaba,
+Önceki yazımda Tor’un yapısında bulanan Onion Routing’in nasıl çalıştığı ile ilgili bir yazı yazmıştım.Şimdi ise merak edenler olabilceğini düşündüğüm için bir Tor ağında bir relay kurulumunun nasıl olacağını anlatacağım.Bu yazıda middle(ortanca) relay kuracağız.
 
-<h1>Peki nerede kurabiliriz?</h1>
+# Peki nerede kurabiliriz?
 [Burada](https://trac.torproject.org/projects/tor/wiki/TorRelayGuide#ASlocationdiversity) Tor’un relay kurlum rehberinde belirttiği üzere;
 - OVH SAS (AS16276)
 - Online S.a.s. (AS12876)
 - Hetzner Online GmbH (AS24940)
 - DigitalOcean, LLC (AS14061)
 
-firmalarını tavsiye __etmeMEmizi__ istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki 
-[detailed list of all the Tor-friendly hosting providers](ttps://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs)
+firmalarını tavsiye __etmeMEmizi__ istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki [detailed list of all the Tor-friendly hosting providers](ttps://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs)
 kısmından öğrenebilirsiniz.
 
-<h1>Kurulum</h1>
+# Kurulum
 Ben kurulumumu Centos tipi bir sunucu üzerinde yapacağım.Başka tip Linux/Windows sunucularda da kurabilirsiniz. İnternet, interneti tarayan ve sunucuların kontrolünü ele almaya çalışan botlarla doludur.Relay kurulumuna geçmeden önce sunucumuzun güvenliğini artıralım.
 
-<h1>SSH Anahtarlarının ayarlanması</h1>
+# SSH Anahtarlarının ayarlanması
 Sunucuza bağlandığın zaman bir çok başarız ssh oturum girişimi olduğunu görmüşsünüz.Yukarıda belirtiğim gibi bunun nedeni bir çok deneme yapılarak sunucunuza girilmek istenilmesidir.Bunun önüne geçelim.
 
 Sunucumuzdaki komut satırımıza
@@ -58,7 +57,7 @@ SSH servisimizi tekrar başlatalım.
 sudo systemctl restart sshd.service
 ```
 
-<h1>Iptables Kurulumu</h1
+# Iptables Kurulumu
 Sunucumuzda terminale
 ```
 sudo yum install iptables-services
@@ -110,16 +109,14 @@ Iptables'ımızı başlatalım.
 
 ```
 systemctl start iptables
-
 ```
 
 Son olarak iptables'ı sunucu açıldığında otomatik olarak başlayacak şekilde etkinleştirelim.
 ```
 systemctl enable iptables
-
 ```
 
-<h1>Relay'ın Yapılandırılması</h1>
+# Relay'ın Yapılandırılması
 Sunucumuzda terminale
 
 ```
@@ -195,17 +192,13 @@ Son olarak tor'u sunucu açıldığında otomatik olarak başlayacak şekilde et
 systemctl enable tor
 ```
 
-<h1>Relay durumu</h1>
+# Relay durumu
 Kurulumumuzu bitirdiğimize göre relay’ın sağlıklı çalıştığından emin olalım.
-
 ```
 cat /var/log/tor/notices.log 
 ```
-
 yazdığımızda;
-
 <a href="/assets/images/relay.png" imageanchor="1">
-	<img style="display: block;margin: 0 auto;height:50px;width:1090px;" src="/assets/images/relay.png" />
+  <img style="display: block;margin: 0 auto;height:50px;width:1090px;" src="/assets/images/relay.png"/>
 </a>
-
 şeklinde bir yazı ile karşılaşmamış gerekiyor.Ek olarak [buradan](https://metrics.torproject.org/rs.html#search/) relay'ımızın adını aratarak bilgi edinebiliriz.
