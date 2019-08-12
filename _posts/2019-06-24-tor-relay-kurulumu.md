@@ -9,6 +9,7 @@ categories:
 tags:
 - Tor Relay Kurulumu
 - tor relay nasıl kurulur
+description: Tor ağında bir relay kurulumu
 ---
 
 Merhaba,

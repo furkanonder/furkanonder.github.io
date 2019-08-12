@@ -1,9 +1,5 @@
 url: "https://furkanonder.github.io/"
-title: Furkan  Önder
-desc: Furkan Önder'in kişisel blogu
-author:
-  name: Furkan Önder
-
+title: Furkan Önder
 disqus: ""
 google_analytics: "UA-108363583-1"
 
@@ -25,5 +21,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
-

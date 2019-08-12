@@ -10,7 +10,9 @@ categories:
 tags:
 - oninon routing nedir
 - oninon routing nasıl çalışır
+description: Tor ağındaki onion routing yapısının çalışma şekli
 ---
+
 Tor projesi ilk olarak ABD Deniz Kuvvetleri tarafından askeri bir gizli ağ projesi olarak haberleşmesini korumak için geliştirildi. Ancak 2004 yılına gelindiğinde ABD Deniz Harp Araştırma Laboratuvarı Tor’u açık kaynak lisanslı bir proje haline getirip herkese açtı.<br>
 
 Günümüzde, bir çok amaç için tor kullanabiliyor.Örneğin, normal bir internet kullanıcıları arama motorları tarafından bilgilerinin toplanmalarını ve satılmalarından pek hoşlanmayabilirler.Arama motorlarında arattığınız bir içeriği sonraki sayfalarda reklam olarak hiç gördünüz mü?İşte bu bir sadece gözle görülür bir örnek.Tor,insan hakları aktivistleri ve gazeteciler tarafından kullanılır.Örneğin, bir bölgede yaşanan istismarları ve bildirmek için kullanılabilir. Bu bölgeler yasalar dahilinde olsalar bile, güvenli oldukları anlamına gelmez. Tor, sesinizi yükseltirken size koruma sağlar.Bunların yanında sağladığı gizlilik nedeniyle Tor ağının uyuşturucu, ilaç ve silah kaçakçılığı, pornografi ve kara para aklama faaliyetleri için de kullanıldığı tespit edilmiştir.<br>

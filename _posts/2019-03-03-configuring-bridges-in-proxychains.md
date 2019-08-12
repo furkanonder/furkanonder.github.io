@@ -9,7 +9,9 @@ categories:
 - proxychains
 tags:
 - proxychains and bridges
+description: Configuring bridges in proxychains
 ---
+
 We are using sqlmap, nmap, nikto tools  etc. while dealing with cyber security. Sometimes we need to be anonymous when using these tools for testing. We are able to use proxychains for this.But.…<br><br>
 
 <a href="/assets/images/proxychains_1.png" imageanchor="1"><img style="display: block;margin: 0 auto;width: 43em;"  src="/assets/images/proxychains_1.png" /></a><br/>
@@ -47,4 +49,3 @@ Let's try it again.
 <a href="/assets/images/proxychains_3.png" imageanchor="1"><img style="display: block;margin: 0 auto;width: 43em;"  src="/assets/images/proxychains_3.png" /></a><br/>
 That's it! There are tor exit nodes at <a href="https://www.dan.me.uk/torlist/">https://www.dan.me.uk/torlist/</a>.
 You can be sure that your ip address is using tor by looking at list.
-

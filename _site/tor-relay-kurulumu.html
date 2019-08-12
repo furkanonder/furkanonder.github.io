@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Furkan Önder"/>
+<meta name="description" content="Tor ağında bir relay kurulumu">
+<meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
+<link rel="icon" href="/assets/images/favicon.ico">
+<title>Tor Relay Kurulumu</title>
+<link rel="stylesheet" href="/assets/css/font-awesome.css">
+<link rel="alternate" type="application/rss+xml" title="Furkan Önder - " href="/feed.xml" />
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="/assets/css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://furkanonder.github.io/">furkanönder</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://furkanonder.github.io/">Anasayfa</a></li>
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/arsiv/">Arşiv</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="ust" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="text-primary">Tor Relay Kurulumu</h3>
+        <span class="text-muted">
+          <time datetime="24 June 2019">
+            24 Haziran 2019
+          </time>
+      	</span>
+      </div>
+
+      <div class="panel-body">
+        <p>Merhaba,
+Önceki yazımda Tor’un yapısında bulanan Onion Routing’in nasıl çalıştığı ile ilgili bir yazı yazmıştım.Şimdi ise merak edenler olabilceğini düşündüğüm için bir Tor ağında bir relay kurulumunun nasıl olacağını anlatacağım.Bu yazıda middle(ortanca) relay kuracağız.</p>
+
+<h1 id="peki-nerede-kurabiliriz">Peki nerede kurabiliriz?</h1>
+<p><a href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide#ASlocationdiversity">Burada</a> Tor’un relay kurlum rehberinde belirttiği üzere;</p>
+<ul>
+  <li>OVH SAS (AS16276)</li>
+  <li>Online S.a.s. (AS12876)</li>
+  <li>Hetzner Online GmbH (AS24940)</li>
+  <li>DigitalOcean, LLC (AS14061)</li>
+</ul>
+
+<p>firmalarını tavsiye <strong>etmeMEmizi</strong> istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki <a href="ttps://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs">detailed list of all the Tor-friendly hosting providers</a>
+kısmından öğrenebilirsiniz.</p>
+
+<h1 id="kurulum">Kurulum</h1>
+<p>Ben kurulumumu Centos tipi bir sunucu üzerinde yapacağım.Başka tip Linux/Windows sunucularda da kurabilirsiniz. İnternet, interneti tarayan ve sunucuların kontrolünü ele almaya çalışan botlarla doludur.Relay kurulumuna geçmeden önce sunucumuzun güvenliğini artıralım.</p>
+
+<h1 id="ssh-anahtarlarının-ayarlanması">SSH Anahtarlarının ayarlanması</h1>
+<p>Sunucuza bağlandığın zaman bir çok başarız ssh oturum girişimi olduğunu görmüşsünüz.Yukarıda belirtiğim gibi bunun nedeni bir çok deneme yapılarak sunucunuza girilmek istenilmesidir.Bunun önüne geçelim.</p>
+
+<p>Sunucumuzdaki komut satırımıza</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa
+</code></pre></div></div>
+<p>yazarak anahtarlarımızı oluşturalım.</p>
+
+<p>Kendi bilgisayarımıza gelelip keylerimizi alalım:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-copy-id kullanıcı-adınız@sunucu-ip-adresiniz
+</code></pre></div></div>
+
+<p>Ve son olarak sunumucuza gelip şifreli ssh bağlantıları kapatalım.Ben dosyalarımı düzenlerken favori editörüm olan vim ile düzenliyorum.Vim yerine nano,vi vb editörlerde kullanabilirsiniz.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim /etc/ssh/sshd_config
+</code></pre></div></div>
+<p>’’’
+PasswordAuthentication no
+‘’’
+şeklinde satırımızı düzenleyelim.</p>
+
+<p>SSH servisimizi tekrar başlatalım.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart sshd.service
+</code></pre></div></div>
+
+<h1 id="iptables-kurulumu">Iptables Kurulumu</h1>
+<p>Sunucumuzda terminale</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install iptables-services
+</code></pre></div></div>
+<p>yazarak iptables paketini kuralım.Iptables’ımızı yapılandırmaya geçelim.</p>
+
+<p>Sunucunuz tarafından oluşturulan trafiğe izin verelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -i lo -j ACCEPT
+</code></pre></div></div>
+
+<p>SSH port 22 bağlantılarını kabul edelim. Çok önemlidir, aksi takdirde sunucumuza bağlanamayız.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+</code></pre></div></div>
+
+<p>Tor 9001 ORPort portunu  kullanarak internete bağlanıyor.Buna izin verilim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 9001 -j ACCEPT
+</code></pre></div></div>
+
+<p>Bu isteğe bağlı.Tor’un relaylarının birbirleriyle senkronize olmasına yardımcı olmak için kullanır.İzin verdiğiniz takdirde herhangi bir zararı olmaz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 9030 -j ACCEPT
+</code></pre></div></div>
+<p>ICMP’ye izin verelim</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 2/s -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+iptables -A INPUT -p icmp -j ACCEPT
+</code></pre></div></div>
+<p>Engellenen trafikleri kayıt edelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
+</code></pre></div></div>
+
+<p>Diğer tüm trafiği engelleyelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -m state --state INVALID -j DROP
+</code></pre></div></div>
+
+<p>Kurallarımızı kaydedelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables-save
+</code></pre></div></div>
+
+<p>Iptables’ımızı başlatalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start iptables
+</code></pre></div></div>
+
+<p>Son olarak iptables’ı sunucu açıldığında otomatik olarak başlayacak şekilde etkinleştirelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable iptables
+</code></pre></div></div>
+
+<h1 id="relayın-yapılandırılması">Relay’ın Yapılandırılması</h1>
+<p>Sunucumuzda terminale</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install epel-release
+yum install tor
+</code></pre></div></div>
+
+<p>yazarak tor paketini kuralım.Şimdi terminalimize gelip</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/tor/torrc 
+</code></pre></div></div>
+<p>yazarak relayımızı yapılandırmaya başlayalım.<br /></p>
+
+<p>SOCKSPort, yalnızca yerel uygulamalara bağlantı yapmak için relay’ı kullanıyorsanız gereklidir. Bu kurulum  için gerekli olmadığı için 0 olarak ayarlıyoruz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SOCKSPort 0
+</code></pre></div></div>
+
+<p>Relay’ın arkaplanda bir daemon olarak çalışmasını istediğimiz için 1 olarak ayarlıyoruz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RunAsDaemon 1 
+</code></pre></div></div>
+
+<p>Relay 9001 ORPort portunu kullanarak internete bağlanıyor.Buna izin verilim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORPort 9001
+</code></pre></div></div>
+
+<p>DirPort’u Tor’un relaylarının birbirleriyle senkronize olmasına yardımcı olmak için kullanır.Bunu 9030<br />
+olarak ayarlıyoruz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DirPort 9030
+</code></pre></div></div>
+
+<p>Bir exit(çıkış) relayı kurmak istemediğimiz için aşağıdaki şekilde  ayarlıyoruz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ExitPolicy reject *:* 
+</code></pre></div></div>
+
+<p>Loglamayı aktif hale getirelim.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Log notice file /var/log/tor/notices.log
+</code></pre></div></div>
+
+<p>Relay’ın kullanacağı toplam trafik miktarını ayarlayalım.Bunu ben seçtiğiniz firmanın size aylık 1TB trarfik verdiğini varsayarak ayarladım.Bunu kendinize göre ayarlabilirsiniz.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AccountingMax 999 GBytes
+</code></pre></div></div>
+
+<p>Trafik sayacının ne zaman başlayacağını ayarlayalım.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AccountingStart month 1 15:00 
+</code></pre></div></div>
+
+<p>Relay’ımıza bir isim verelim</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nickname RelayAdı
+</code></pre></div></div>
+
+<p>Relay’ımıza iletişim bilgisi ekleyelim. Relay’ımızda herhangi sorun olduğu zaman Tor size bir mail yollamak için kullanır.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ContactInfo herkimse email[at]email[dot]com
+</code></pre></div></div>
+
+<p>değişikliklerimizi yaptıktan sonra dosyamızı kaydedelim.</p>
+
+<p>Tor relay’ımızı başlatalım.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart tor
+</code></pre></div></div>
+<p>Son olarak tor’u sunucu açıldığında otomatik olarak başlayacak şekilde etkinleştirelim</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable tor
+</code></pre></div></div>
+
+<h1 id="relay-durumu">Relay durumu</h1>
+<p>Kurulumumuzu bitirdiğimize göre relay’ın sağlıklı çalıştığından emin olalım.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /var/log/tor/notices.log 
+</code></pre></div></div>
+<p>yazdığımızda;
+<a href="/assets/images/relay.png" imageanchor="1">
+  <img style="display: block;margin: 0 auto;height:50px;width:1090px;" src="/assets/images/relay.png" />
+</a>
+şeklinde bir yazı ile karşılaşmamış gerekiyor.Ek olarak <a href="https://metrics.torproject.org/rs.html#search/">buradan</a> relay’ımızın adını aratarak bilgi edinebiliriz.</p>
+
+      </div>
+
+      <div class="panel-footer">
+        <ul class="pager panel-info">
+          
+          <li class="next">
+            <a href="/onion-routing-nasil-calisir" data-toggle="tooltip" data-placement="top" title="Rtl-Sdr ile GSM Ağında Sinyal Analizi">Önceki Gönderi &rarr;</a>
+          </li>
+          
+          
+          <li class="previous">
+            <a href="/rtl-sdr-ile-gsm-aginda-sinyal-analizi" data-toggle="tooltip" data-placement="top" title="Onion Routing Nasıl Çalışır?">&larr; Sonraki Gönderi</a>
+          </li>
+          
+          <div class="post-date"></div>
+          <div class="sharing-icons">
+            <div class="post-date">Sosyal Medyada Paylaş!</div>
+          	<a href="https://twitter.com/intent/tweet?text=Tor Relay Kurulumu&amp;url=/tor-relay-kurulumu" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/tor-relay-kurulumu&amp;title=Tor Relay Kurulumu" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/tor-relay-kurulumu" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="panel panel-info">
+      <div class="panel-body">
+        
+<div class="comments">
+  <div id="disqus_thread"></div>
+	<script>
+	(function() {
+	var d = document, s = d.createElement('script');
+	s.src = 'https://furkantahaonder.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row2">
+    <div class="col-md-12">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <span class="text-primary"><b>Son Gönderiler</b></span>
+        </div>
+        <div class="panel-body">
+          <ul>
+            
+            <li>
+              <a href="/rtl-sdr-ile-gsm-aginda-sinyal-analizi">Rtl-Sdr ile GSM Ağında Sinyal Analizi</a>
+            </li>
+            
+            <li>
+              <a href="/tor-relay-kurulumu">Tor Relay Kurulumu</a>
+            </li>
+            
+            <li>
+              <a href="/onion-routing-nasil-calisir">Onion Routing Nasıl Çalışır?</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+  <footer class="footer">
+  <div class="container footerBox">
+    <p class="copyright text-muted">
+      &#169; 2018 Furkan Önder.Powered by Github Pages and Jekyll.
+      <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
+      <a href="https://twitter.com/Fsyscall" target="_blank"><i style="font-size:28px; color:White" class="fa fa-twitter" ></i></a>      
+      <a href="https://www.linkedin.com/in/furkan-onder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-linkedin" ></i></a>
+      <a href="https://medium.com/@furkanonder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-medium" ></i></a>
+      <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108363583-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-108363583-1');
+	</script>
+
+
+
+
+</body>
+</html>

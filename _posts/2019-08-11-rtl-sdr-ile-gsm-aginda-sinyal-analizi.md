@@ -9,6 +9,7 @@ categories:
 - GSM
 tags:
 - Rtl-Sdr ile GSM
+description: rtl-sdr kullanarak GSM ağında sinyal analizi
 ---
 
 Selamlar,

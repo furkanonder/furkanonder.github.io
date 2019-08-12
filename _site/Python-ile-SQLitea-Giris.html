@@ -4,18 +4,16 @@
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Furkan Önder'in kişisel blogu">
-<meta name="author" content="Furkan  Önder" />
-<meta name="keywords" content="Furkan Önder,yazılım,python,c,java">
+<meta name="author" content="Furkan Önder"/>
+<meta name="description" content="Python ile SQLite kullanımı">
 <meta name="google-site-verification" content="iSX4wopS8vut_QMGIFuvlkUTcusGyXroXbqO6AOZ8iA" />
 <link rel="icon" href="/assets/images/favicon.ico">
 <title>Python ile SQLite’a Giriş</title>
 <link rel="stylesheet" href="/assets/css/font-awesome.css">
-<link rel="alternate" type="application/rss+xml" title="Furkan  Önder - " href="/feed.xml" />
+<link rel="alternate" type="application/rss+xml" title="Furkan Önder - " href="/feed.xml" />
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 <link href="/assets/css/custom.css" rel="stylesheet">
-
 </head>
 <body>
   <div class="container">
@@ -63,7 +61,7 @@ SQLite, python programlama dilinde varsayılan olarak gelen bir veritabanıdır.
 
 Öncelikle sqlite3 kütüphanesini kodumuza dahil edelim.
 <pre class="brush:python"> import sqlite </pre>
-Veritabanımızı connet() methodu ile oluşturalım.
+Veritabanımızı connect() methodu ile oluşturalım.
 <pre class="brush:python"> vt = sqlite3.connect('kur.db') </pre>
 Veritabanı üzerinde işlem yapabilmek bir imleçe ihtiyaç duyarız. cursor() methodu ile imlecimizi oluşturalım.
 <pre class="brush:python"> imlec = vt.cursor() </pre>
@@ -161,7 +159,6 @@ Veritabanına girmek <b>sqlite3 kur.db</b> yazalım
 <br/><br/>
 Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder.github.io/tree/master/codes/dolarKuruSqlite.py/" target="_blank"> buraya </a>bakabilirsiniz.İyi çalışmalar dilerim.
 <br/>
-
       </div>
 
       <div class="panel-footer">
@@ -220,15 +217,15 @@ Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder
           <ul>
             
             <li>
+              <a href="/rtl-sdr-ile-gsm-aginda-sinyal-analizi">Rtl-Sdr ile GSM Ağında Sinyal Analizi</a>
+            </li>
+            
+            <li>
+              <a href="/tor-relay-kurulumu">Tor Relay Kurulumu</a>
+            </li>
+            
+            <li>
               <a href="/onion-routing-nasil-calisir">Onion Routing Nasıl Çalışır?</a>
-            </li>
-            
-            <li>
-              <a href="/configuring-bridges-in-proxychains">Configuring bridges in proxychains</a>
-            </li>
-            
-            <li>
-              <a href="/Linux-ve-Sinyaller">Linux ve Sinyaller</a>
             </li>
             
           </ul>
@@ -246,6 +243,7 @@ Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder
     <p class="copyright text-muted">
       &#169; 2018 Furkan Önder.Powered by Github Pages and Jekyll.
       <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
+      <a href="https://twitter.com/Fsyscall" target="_blank"><i style="font-size:28px; color:White" class="fa fa-twitter" ></i></a>      
       <a href="https://www.linkedin.com/in/furkan-onder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-linkedin" ></i></a>
       <a href="https://medium.com/@furkanonder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-medium" ></i></a>
       <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
