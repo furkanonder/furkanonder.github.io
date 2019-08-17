@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-02-25T00:00:00+02:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Python-ve-C-ile-Faktoriyel"},"author":{"@type":"Person","name":"furkan önder"},"description":"Python ve C ile Faktöriyel hesaplama","@type":"BlogPosting","url":"http://localhost:4000/Python-ve-C-ile-Faktoriyel","headline":"Python ve C ile Faktöriyel","dateModified":"2016-02-25T00:00:00+02:00","datePublished":"2016-02-25T00:00:00+02:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"furkan önder"},"description":"Python ve C ile Faktöriyel hesaplama","@type":"BlogPosting","headline":"Python ve C ile Faktöriyel","dateModified":"2016-02-25T00:00:00+02:00","datePublished":"2016-02-25T00:00:00+02:00","url":"http://localhost:4000/Python-ve-C-ile-Faktoriyel","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Python-ve-C-ile-Faktoriyel"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -62,23 +62,28 @@
       </div>
 
       <div class="panel-body">
-        Merhaba, bugün ki yazımda sizlere python ve c ile faktöriyel almayı göstereceğim.<br />
-Öncelikle faktöriyelin ne olduğunu kısaca açıklayalım:<br /><br />Faktöriyel, pozitif bir tamsayının kendisinden önceki bütün tamsayılarla 1'e inilinceye kadar çarpılması sonucunda elde edilen çarpımdır. n sayısının faktöriyeli, n! şeklinde gösterilir.<br /><br />
-Örneğin;<br />5 sayısının faktöriyeli 5.4.3.2.1= 120 olarak hesaplanır. Faktöriyel hakkında daha fazla bilgi almak için <a href="https://tr.0wikipedia.org/wiki/Fibonacci_dizisi" target="_blank"> burayı </a>ziyaret edebilirsiniz. ziyaret edebilirsiniz.<br /><br />Şimdi faktöriyel için python ve c ile yazılmış&nbsp; olan&nbsp; kodları inceleyelim;<br /><br />C:
+        <p>Merhaba, 
+bu yazıda sizlere python ve c ile faktöriyel almayı göstereceğim.
+Öncelikle faktöriyelin ne olduğunu kısaca açıklayalım:
+Faktöriyel, pozitif bir tamsayının kendisinden önceki bütün tamsayılarla 1’e inilinceye kadar çarpılması sonucunda elde edilen çarpımdır. n sayısının faktöriyeli, n! şeklinde gösterilir.</p>
 
-<pre class="brush:cpp">//Created by Furkan Taha ÖNDER on 04.12.2016.
-#include &lt;<a>stdio.h</a>&gt; 
+<p>Örneğin;
+5 sayısının faktöriyeli 5.4.3.2.1= 120 olarak hesaplanır. Faktöriyel hakkında daha fazla bilgi almak için <a href="https://en.wikipedia.org/wiki/Factorial" target="_blank"> burayı </a>ziyaret edebilirsiniz.Şimdi faktöriyel için python ve c ile yazılmış olan kodları inceleyelim;</p>
+
+<p>C:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include&lt;stdio.h&gt; 
 int main(){  
     int sayi, sonuc=1; 
   
     printf("Faktoriyelini almak istediginiz sayiyi  giriniz: ");
-    scanf("%d", &sayi); 
+    scanf("%d", &amp;sayi); 
 		
     // for ile bir döngü oluşturduk.Döngünün içinde i değişkeni oluşturup, 1'e eşitliyoruz.
     //i değiskeni, sayi değişkenine eşit ya da büyük olmasına kadar döngü  tekrar edecek.
     //i değişkeni döngünün her tekrarında  arttırılacak.
 		
-    for(int i=1;i<=sayi;i++){ 
+    for(int i=1;i&lt;=sayi;i++){ 
     sonuc = sonuc*i; 
     }
     printf("%d sayisinin faktoriyeli %d sayisina esittir.",sayi, sonuc);  
@@ -86,12 +91,10 @@ int main(){
   getchar();
   return 0; 
 }
-</pre>
+</code></pre></div></div>
+<p>Python:</p>
 
-<span style="line-height: 115%;"><span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Python:</span>
-
-<pre class="brush:python">#Created by Furkan Taha ÖNDER on 4.12.2016.
-sayı = int(input('Faktöriyelini almak istediğiniz sayıyı giriniz : '))
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sayı = int(input('Faktöriyelini almak istediğiniz sayıyı giriniz : '))
 faktöriyel = 1
 
 #For yapısı ile bir döngü oluşturuyoruz.
@@ -100,10 +103,15 @@ for i in range(sayı):
     faktöriyel = faktöriyel *(1+i)
 
 print(sayı,"sayısının faktöriyeli",faktöriyel,"sayısına eşittir.")
-</pre>
-<span style="font-family: &quot;times new roman&quot;;"><span style="font-family: Arial, Helvetica, sans-serif;"><span style="white-space: normal;">Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim.</span>
-</span><span style="font-family: &quot;times new roman&quot;;"><span style="font-family: Arial, Helvetica, sans-serif; white-space: normal;">İyi Çalışmalar.</span><span style="font-family: times new roman;">
-</span></span></span></span></0></pre>
+</code></pre></div></div>
+
+<p>Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim.İyi Çalışmalar.</p>
+
+<h2 id="referans">Referans</h2>
+<ul>
+  <li>https://en.wikipedia.org/wiki/Factorial</li>
+</ul>
+
       </div>
 
       <div class="panel-footer">

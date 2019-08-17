@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-30T01:30:00+03:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Linux-ve-Sinyaller"},"author":{"@type":"Person","name":"furkan önder"},"description":"Linux’daki sinyal yapısının çalışma şekli","@type":"BlogPosting","url":"http://localhost:4000/Linux-ve-Sinyaller","headline":"Linux ve Sinyaller","dateModified":"2018-08-30T01:30:00+03:00","datePublished":"2018-08-30T01:30:00+03:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"furkan önder"},"description":"Linux’daki sinyal yapısının çalışma şekli","@type":"BlogPosting","headline":"Linux ve Sinyaller","dateModified":"2018-08-30T01:30:00+03:00","datePublished":"2018-08-30T01:30:00+03:00","url":"http://localhost:4000/Linux-ve-Sinyaller","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Linux-ve-Sinyaller"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -62,90 +62,136 @@
       </div>
 
       <div class="panel-body">
-        Merhaba,<br/>
-Bu yazı da Linux işletim sisteminde yer alan sinyallerden bahsedeceğim.Sinyali kısaca tanımlamak gerekirse; bir prosese,proses tarafından ya da başka bir proses tarafından gönderilen mesaj olarak tanımlayabiliriz.Bu mesaja göre kapatma,durdurma ve başlatma gibi  sistemsel eylemler gerçekleşebilir.
-<br/><br/>
-Sistemimizde bulunan sinyalleri öğrenmek için terminale
-<pre class="brush:python"> kill -l </pre>
-komutunu yazalım.<br/><br/>
-<a href="/assets/images/sinyaller.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/sinyaller.png" /></a><br/>
-Resimde görüldüğü üzere sistemimizde 64 adet sinyal bulunuyor. Burada yer alan sinyaller
-içerisinden Sonlandırma Sinyalleri’ni inceleyeceğiz.
+        <p>Merhaba,
+Bu yazı da Linux işletim sisteminde yer alan sinyallerden bahsedeceğim.Sinyali kısaca tanımlamak gerekirse; bir prosese,proses tarafından ya da başka bir proses tarafından gönderilen mesaj olarak tanımlayabiliriz.Bu mesaja göre kapatma,durdurma ve başlatma gibi  sistemsel eylemler gerçekleşebilir.</p>
 
-<br/><br/><b>SIGINT</b><br/>
-SIGINT sinyali,signal(sinyal) ve interrupt (kesmek) kelimelerinden türetilmiştir.Çalışan prosesleri iptal etmek için gönderirilir.Ctrl+C kombinasyonu klavyeden uygulanarak bu sinyal gönderilebilir.
+<p>Sistemimizde bulunan sinyalleri öğrenmek için terminale</p>
 
-<br/><br/><b>SIGTERM</b><br/>
-SIGTERM sinyali,signal(sinyal) ve terminate (sona erdirmek) kelimelerinden türetilmiştir. Prosesin sona erdirilmesi için kullanılır.Bu sinyal prosesi sonlandırmak için bazen yetersiz kalabilir. Çünkü prosese gelen sinyal engellenebilir ya da yoksayılabilir. Bu gibi durumlarda ise SIGKILL sinyali gönderilir.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -l 
+</code></pre></div></div>
 
-<br/><br/><b>SIGKILL</b><br/>
-SIGKILL sinyali, bir prosese gönderildiğinde bu proses her zaman son bulur.Bu sinyal yakalanamaz ya da yok sayılamaz.
+<p>komutunu yazalım.</p>
 
-<br/><h1>Sinyal Göndermek</h1>
-Sistemimizde çalışan  proseslere sinyal göndereceğiz.Çalışan prosesleri  görmek için terminale
-<pre class="brush:python">top</pre>
-yazdık.
-<a href="/assets/images/top.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/top.png" /></a><br/>
-Sistemde çalışan prosesleri görüyorsunuz.Listenin başına baktığımızda, en solunda prosesin PID değerini  sonunda ise çalışan prosesisin adı olan  firefox ‘u görüyorsunuz.Sinyal gönderirken PID değerini kullanacağız.Firefox prosesine bir kill sinyali gönderilim.Bunu 2 şekilde yapabiliriz.<br/><br/>
-<b>kill</b> <b>Sinyal adı</b> ve <b>PID değerini</b> yazarak sinyal gönderebiliriz.
-<pre class="brush:python"> kill -KILL 18229 </pre>
+<p><a href="/assets/images/sinyaller.png" imageanchor="1">
+	<img style="display: block;margin: 0 auto;" src="/assets/images/sinyaller.png" />
+</a></p>
 
-Başka bir  yöntem ise <b>kill</b> <b>sinyal numarası</b> ve <b>PID</b> değerini yazarak sinyal göndermektir.Yazımızın başında terminale kill-l yazarak sinyallari incelediğimizde, KILL sinyalinin numarasını 9 olarak görmüştük.
-<pre class="brush:python"> kill -9 18229 </pre>
+<p>Resimde görüldüğü üzere sistemimizde 64 adet sinyal bulunuyor. Burada yer alan sinyaller
+içerisinden Sonlandırma Sinyalleri’ni inceleyeceğiz.</p>
 
+<h2 id="sigint">SIGINT</h2>
+<p>SIGINT sinyali,signal(sinyal) ve interrupt (kesmek) kelimelerinden türetilmiştir.Çalışan prosesleri iptal etmek için gönderirilir.Ctrl+C kombinasyonu klavyeden uygulanarak bu sinyal gönderilebilir.</p>
 
-<br/><h1>Sinyal Yakalamak</h1>
-Sinyal göndermeyi öğrendiğimize göre sinyal yakalamayı da öğrenmeye başlayabiliriz.Sinyal yakalamak için bir bash scripti yazacağız.
-Bash betiğinde sinyaller trap deyimi ile yakalanılar. <b>trap</b> <b>komut adı</b> <b>sinyal numarası</b> şeklinde trap deyimini kullanabiliriz. Biz betiğimizde echo komutunu kullanarak gelen sinyal numarası karşılık yakalanan sinyalin alındığını belirten bir mesaj yazdıracağız.Bununla birlikte bir for döngüsü kullanarak birer saniye aralıklarla “sinyal bekleniyor...” yazısını yazarak sinyal in gelmesini beklemeye başlıyacağız.<br><br/>
+<h2 id="sigterm">SIGTERM</h2>
+<p>SIGTERM sinyali,signal(sinyal) ve terminate (sona erdirmek) kelimelerinden türetilmiştir. Prosesin sona erdirilmesi için kullanılır.Bu sinyal prosesi sonlandırmak için bazen yetersiz kalabilir. Çünkü prosese gelen sinyal engellenebilir ya da yoksayılabilir. Bu gibi durumlarda ise SIGKILL sinyali gönderilir.</p>
 
-<pre class="brush:python">
-#!/bin/bash
-trap ' echo "SIGTERM sinyali yakalandi!" ' 2
+<h2 id="sigkill">SIGKILL</h2>
+<p>SIGKILL sinyali, bir prosese gönderildiğinde bu proses her zaman son bulur.Bu sinyal yakalanamaz ya da yok sayılamaz.</p>
 
-trap ' echo "SIGINT sinyali yakalandi!" ' 15
+<h2 id="sinyal-göndermek">Sinyal Göndermek</h2>
+<p>Sistemimizde çalışan  proseslere sinyal göndereceğiz.Çalışan prosesleri görmek için terminale</p>
 
-for (( c=1; c<200; c++ ))
-    do
-       echo "Sinyal bekleniyor..."
-       sleep 1
-    done
-</pre>
-<br>
-Betiğimizi sinyal.sh olarak kaydedelim.Çalıştırma izni vermek ve çalıştırmak için sırasıyla terminale
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>top
+</code></pre></div></div>
 
-<pre class="brush:python">chmod +x sinyal.sh</pre>
+<p>yazdık.</p>
 
-<pre class="brush:python">./sinyal.sh</pre>
+<p><a href="/assets/images/top.png" imageanchor="1">
+	<img style="display: block;margin: 0 auto;" src="/assets/images/top.png" />
+</a></p>
 
-yazalım.<br/><br/>
+<p>Sistemde çalışan prosesleri görüyorsunuz.Listenin başına baktığımızda, en solunda prosesin PID değerini  sonunda ise çalışan prosesisin adı olan  firefox ‘u görüyorsunuz.Sinyal gönderirken PID değerini kullanacağız.Firefox prosesine bir kill sinyali gönderilim.Bunu 2 şekilde yapabiliriz.</p>
 
-Çalışan betiğimizin PID değerini kullanarak sinyal gönderebiliriz.Bu değeri bulmak için terminale
+<p><b>kill</b> <b>Sinyal adı</b> ve <b>PID değerini</b> yazarak sinyal gönderebiliriz.</p>
 
-<pre class="brush:python">ps -e | grep sinyal</pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -KILL 18229 
+</code></pre></div></div>
 
-yazalım.<br/>
-<a href="/assets/images/ps-e.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/ps-e.png" /></a><br/>
+<p>Başka bir  yöntem ise <b>kill</b> <b>sinyal numarası</b> ve <b>PID</b> değerini yazarak sinyal göndermektir.Yazımızın başında terminale kill-l yazarak sinyallari incelediğimizde, KILL sinyalinin numarasını 9 olarak görmüştük.</p>
 
-Betiğimizin PID değerini öğrendiğimize göre sinyal göndermeye başlayabiliriz.
-TERM sinyalini,
-<pre class="brush:python">kill -2 11542</pre>
-<pre class="brush:python">kill 11542</pre>
-<pre class="brush:python">kill -TERM 11542</pre>
-bu üç komutdan birini kullanarak ya da betik penceremizin üzerine gelerek <b>ctrl+c</b> tuşlarını kullanarak da TERM sinyalini gönderelim.
-<br><br>
-INT sinyalini
-<pre class="brush:python">kill -15 11542</pre>
-<pre class="brush:python">kill -INT 11542</pre>
-bu iki komutdan birini kullanarak gönderelim.
-<br><br>
-Son olarak ise KILL sinyalini
-<pre class="brush:python">kill -9 11542</pre>
-<pre class="brush:python">kill -KILL 11542</pre>
-bu iki komutdan birini kullanarak gönderelim.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -9 18229 
+</code></pre></div></div>
 
-<a href="/assets/images/betik.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/betik.png" /></a><br/>
+<h2 id="sinyal-yakalamak">Sinyal Yakalamak</h2>
+<p>Sinyal göndermeyi öğrendiğimize göre sinyal yakalamayı da öğrenmeye başlayabiliriz.Sinyal yakalamak için bir bash scripti yazacağız.
+Bash betiğinde sinyaller trap deyimi ile yakalanılar. <b>trap</b> <b>komut adı</b> <b>sinyal numarası</b> şeklinde trap deyimini kullanabiliriz. Biz betiğimizde echo komutunu kullanarak gelen sinyal numarası karşılık yakalanan sinyalin alındığını belirten bir mesaj yazdıracağız.Bununla birlikte bir for döngüsü kullanarak birer saniye aralıklarla “sinyal bekleniyor…” yazısını yazarak sinyal in gelmesini beklemeye başlıyacağız.</p>
 
-Yazımızın başında söyledeğimiz üzere KILL sinyalinin bir prosese gönderilmesi durumda bu proses her zaman son bulacağını söylemiştik.Resimde görüldüğü üzere prosesimizin çalışması KILL sinyalinden dolayı killed yazarak son bulmuş oldu. Yazımızın sonuna geldik.Anlamadığınız yerleri yorum olarak yazarsanız,yardımcı olabilirim.İyi Çalışmalar.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">trap</span> <span class="s1">' echo "SIGTERM sinyali yakalandi!" '</span> 2
+
+<span class="nb">trap</span> <span class="s1">' echo "SIGINT sinyali yakalandi!" '</span> 15
+
+<span class="k">for</span> <span class="o">((</span> <span class="nv">c</span><span class="o">=</span>1<span class="p">;</span> c&lt;200<span class="p">;</span> c++ <span class="o">))</span>
+  <span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"Sinyal bekleniyor..."</span>
+    sleep 1
+  <span class="k">done</span>
+</code></pre></div></div>
+
+<p>Betiğimizi sinyal.sh olarak kaydedelim.Çalıştırma izni vermek ve çalıştırmak için sırasıyla terminale</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x sinyal.sh
+./sinyal.sh
+</code></pre></div></div>
+
+<p>yazalım.</p>
+
+<p>Çalışan betiğimizin PID değerini kullanarak sinyal gönderebiliriz.Bu değeri bulmak için terminale</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps -e | grep sinyal
+</code></pre></div></div>
+
+<p>yazalım.</p>
+
+<p><a href="/assets/images/ps-e.png" imageanchor="1">
+	<img style="display: block;margin: 0 auto;" src="/assets/images/ps-e.png" />
+</a></p>
+
+<p>Betiğimizin PID değerini öğrendiğimize göre sinyal göndermeye başlayabiliriz.
+TERM sinyalini,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -2 11542
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill 11542
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -TERM 11542
+</code></pre></div></div>
+
+<p>bu üç komutdan birini kullanarak ya da betik penceremizin üzerine gelerek <b>ctrl+c</b> tuşlarını kullanarak da TERM sinyalini gönderelim.</p>
+
+<p>INT sinyalini</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -15 11542
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -INT 11542
+</code></pre></div></div>
+
+<p>bu iki komutdan birini kullanarak gönderelim.</p>
+
+<p>Son olarak ise KILL sinyalini</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -9 11542
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kill -KILL 11542
+</code></pre></div></div>
+
+<p>bu iki komutdan birini kullanarak gönderelim.</p>
+
+<p><a href="/assets/images/betik.png" imageanchor="1">
+	<img style="display: block;margin: 0 auto;" src="/assets/images/betik.png" />
+</a></p>
+
+<p>Yazımızın başında söyledeğimiz üzere KILL sinyalinin bir prosese gönderilmesi durumda bu proses her zaman son bulacağını söylemiştik.Resimde görüldüğü üzere prosesimizin çalışması KILL sinyalinden dolayı killed yazarak son bulmuş oldu. Yazımızın sonuna geldik.Anlamadığınız yerleri yorum olarak yazarsanız,yardımcı olabilirim.İyi Çalışmalar.</p>
+
+<h2 id="referans">Referans</h2>
+<ul>
+  <li>http://man7.org/linux/man-pages/man7/signal.7.html</li>
+</ul>
+
       </div>
 
       <div class="panel-footer">

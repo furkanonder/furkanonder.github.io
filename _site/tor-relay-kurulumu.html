@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-06-24T00:30:00+03:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tor-relay-kurulumu"},"author":{"@type":"Person","name":"furkan önder"},"description":"Tor ağında bir relay kurulumu","@type":"BlogPosting","url":"http://localhost:4000/tor-relay-kurulumu","headline":"Tor Relay Kurulumu","dateModified":"2019-06-24T00:30:00+03:00","datePublished":"2019-06-24T00:30:00+03:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"furkan önder"},"description":"Tor ağında bir relay kurulumu","@type":"BlogPosting","headline":"Tor Relay Kurulumu","dateModified":"2019-06-24T00:30:00+03:00","datePublished":"2019-06-24T00:30:00+03:00","url":"http://localhost:4000/tor-relay-kurulumu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tor-relay-kurulumu"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -65,7 +65,7 @@
         <p>Merhaba,
 Önceki yazımda Tor’un yapısında bulanan Onion Routing’in nasıl çalıştığı ile ilgili bir yazı yazmıştım.Şimdi ise merak edenler olabilceğini düşündüğüm için bir Tor ağında bir relay kurulumunun nasıl olacağını anlatacağım.Bu yazıda middle(ortanca) relay kuracağız.</p>
 
-<h1 id="peki-nerede-kurabiliriz">Peki nerede kurabiliriz?</h1>
+<h2 id="peki-nerede-kurabiliriz">Peki nerede kurabiliriz?</h2>
 <p><a href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide#ASlocationdiversity">Burada</a> Tor’un relay kurlum rehberinde belirttiği üzere;</p>
 <ul>
   <li>OVH SAS (AS16276)</li>
@@ -77,15 +77,17 @@
 <p>firmalarını tavsiye <strong>etmeMEmizi</strong> istiyor.Çünkü bu firmalarda çok fazla Tor relay’ı bulunmaktadır.Peki hangi firmaları tercih edebiliriz derseniz, Tor’un rehberindeki <a href="ttps://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs">detailed list of all the Tor-friendly hosting providers</a>
 kısmından öğrenebilirsiniz.</p>
 
-<h1 id="kurulum">Kurulum</h1>
+<h2 id="kurulum">Kurulum</h2>
 <p>Ben kurulumumu Centos tipi bir sunucu üzerinde yapacağım.Başka tip Linux/Windows sunucularda da kurabilirsiniz. İnternet, interneti tarayan ve sunucuların kontrolünü ele almaya çalışan botlarla doludur.Relay kurulumuna geçmeden önce sunucumuzun güvenliğini artıralım.</p>
 
-<h1 id="ssh-anahtarlarının-ayarlanması">SSH Anahtarlarının ayarlanması</h1>
+<h2 id="ssh-anahtarlarının-ayarlanması">SSH Anahtarlarının ayarlanması</h2>
 <p>Sunucuza bağlandığın zaman bir çok başarız ssh oturum girişimi olduğunu görmüşsünüz.Yukarıda belirtiğim gibi bunun nedeni bir çok deneme yapılarak sunucunuza girilmek istenilmesidir.Bunun önüne geçelim.</p>
 
 <p>Sunucumuzdaki komut satırımıza</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa
 </code></pre></div></div>
+
 <p>yazarak anahtarlarımızı oluşturalım.</p>
 
 <p>Kendi bilgisayarımıza gelelip keylerimizi alalım:</p>
@@ -95,53 +97,65 @@ kısmından öğrenebilirsiniz.</p>
 
 <p>Ve son olarak sunumucuza gelip şifreli ssh bağlantıları kapatalım.Ben dosyalarımı düzenlerken favori editörüm olan vim ile düzenliyorum.Vim yerine nano,vi vb editörlerde kullanabilirsiniz.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vim /etc/ssh/sshd_config
+<p>sudo vim /etc/ssh/sshd_config</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PasswordAuthentication no
 </code></pre></div></div>
-<p>’’’
-PasswordAuthentication no
-‘’’
-şeklinde satırımızı düzenleyelim.</p>
+
+<p>şeklinde satırımızı düzenleyelim.</p>
 
 <p>SSH servisimizi tekrar başlatalım.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart sshd.service
 </code></pre></div></div>
 
-<h1 id="iptables-kurulumu">Iptables Kurulumu</h1>
+<h2 id="iptables-kurulumu">Iptables Kurulumu</h2>
 <p>Sunucumuzda terminale</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install iptables-services
 </code></pre></div></div>
+
 <p>yazarak iptables paketini kuralım.Iptables’ımızı yapılandırmaya geçelim.</p>
 
 <p>Sunucunuz tarafından oluşturulan trafiğe izin verelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -i lo -j ACCEPT
 </code></pre></div></div>
 
 <p>SSH port 22 bağlantılarını kabul edelim. Çok önemlidir, aksi takdirde sunucumuza bağlanamayız.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 </code></pre></div></div>
 
 <p>Tor 9001 ORPort portunu  kullanarak internete bağlanıyor.Buna izin verilim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 9001 -j ACCEPT
 </code></pre></div></div>
 
 <p>Bu isteğe bağlı.Tor’un relaylarının birbirleriyle senkronize olmasına yardımcı olmak için kullanır.İzin verdiğiniz takdirde herhangi bir zararı olmaz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p tcp --dport 9030 -j ACCEPT
 </code></pre></div></div>
-<p>ICMP’ye izin verelim</p>
+
+<p>ICMP’ye izin verelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 2/s -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 iptables -A INPUT -p icmp -j ACCEPT
 </code></pre></div></div>
+
 <p>Engellenen trafikleri kayıt edelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
 </code></pre></div></div>
 
 <p>Diğer tüm trafiği engelleyelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A INPUT -m state --state INVALID -j DROP
 </code></pre></div></div>
 
 <p>Kurallarımızı kaydedelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables-save
 </code></pre></div></div>
 
@@ -151,10 +165,11 @@ iptables -A INPUT -m state --state INVALID -j DROP
 </code></pre></div></div>
 
 <p>Son olarak iptables’ı sunucu açıldığında otomatik olarak başlayacak şekilde etkinleştirelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable iptables
 </code></pre></div></div>
 
-<h1 id="relayın-yapılandırılması">Relay’ın Yapılandırılması</h1>
+<h2 id="relayın-yapılandırılması">Relay’ın Yapılandırılması</h2>
 <p>Sunucumuzda terminale</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum install epel-release
@@ -162,69 +177,89 @@ yum install tor
 </code></pre></div></div>
 
 <p>yazarak tor paketini kuralım.Şimdi terminalimize gelip</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /etc/tor/torrc 
 </code></pre></div></div>
-<p>yazarak relayımızı yapılandırmaya başlayalım.<br /></p>
+<p>yazarak relayımızı yapılandırmaya başlayalım.</p>
 
 <p>SOCKSPort, yalnızca yerel uygulamalara bağlantı yapmak için relay’ı kullanıyorsanız gereklidir. Bu kurulum  için gerekli olmadığı için 0 olarak ayarlıyoruz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SOCKSPort 0
 </code></pre></div></div>
 
 <p>Relay’ın arkaplanda bir daemon olarak çalışmasını istediğimiz için 1 olarak ayarlıyoruz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RunAsDaemon 1 
 </code></pre></div></div>
 
 <p>Relay 9001 ORPort portunu kullanarak internete bağlanıyor.Buna izin verilim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ORPort 9001
 </code></pre></div></div>
 
-<p>DirPort’u Tor’un relaylarının birbirleriyle senkronize olmasına yardımcı olmak için kullanır.Bunu 9030<br />
-olarak ayarlıyoruz.</p>
+<p>DirPort’u Tor’un relaylarının birbirleriyle senkronize olmasına yardımcı olmak için kullanır.Bunu 9030 olarak ayarlıyoruz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DirPort 9030
 </code></pre></div></div>
 
-<p>Bir exit(çıkış) relayı kurmak istemediğimiz için aşağıdaki şekilde  ayarlıyoruz.</p>
+<p>Bir exit(çıkış) relayı kurmak istemediğimiz için aşağıdaki şekilde ayarlıyoruz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ExitPolicy reject *:* 
 </code></pre></div></div>
 
 <p>Loglamayı aktif hale getirelim.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Log notice file /var/log/tor/notices.log
 </code></pre></div></div>
 
 <p>Relay’ın kullanacağı toplam trafik miktarını ayarlayalım.Bunu ben seçtiğiniz firmanın size aylık 1TB trarfik verdiğini varsayarak ayarladım.Bunu kendinize göre ayarlabilirsiniz.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AccountingMax 999 GBytes
 </code></pre></div></div>
 
 <p>Trafik sayacının ne zaman başlayacağını ayarlayalım.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AccountingStart month 1 15:00 
 </code></pre></div></div>
 
 <p>Relay’ımıza bir isim verelim</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nickname RelayAdı
 </code></pre></div></div>
 
 <p>Relay’ımıza iletişim bilgisi ekleyelim. Relay’ımızda herhangi sorun olduğu zaman Tor size bir mail yollamak için kullanır.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ContactInfo herkimse email[at]email[dot]com
 </code></pre></div></div>
 
 <p>değişikliklerimizi yaptıktan sonra dosyamızı kaydedelim.</p>
 
 <p>Tor relay’ımızı başlatalım.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart tor
 </code></pre></div></div>
+
 <p>Son olarak tor’u sunucu açıldığında otomatik olarak başlayacak şekilde etkinleştirelim</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable tor
 </code></pre></div></div>
 
-<h1 id="relay-durumu">Relay durumu</h1>
+<h2 id="relay-durumu">Relay durumu</h2>
 <p>Kurulumumuzu bitirdiğimize göre relay’ın sağlıklı çalıştığından emin olalım.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /var/log/tor/notices.log 
 </code></pre></div></div>
-<p>yazdığımızda;
-<a href="/assets/images/relay.png" imageanchor="1">
+<p>yazdığımızda;</p>
+
+<p><a href="/assets/images/relay.png" imageanchor="1">
   <img style="display: block;margin: 0 auto;height:50px;width:1090px;" src="/assets/images/relay.png" />
 </a>
 şeklinde bir yazı ile karşılaşmamış gerekiyor.Ek olarak <a href="https://metrics.torproject.org/rs.html#search/">buradan</a> relay’ımızın adını aratarak bilgi edinebiliriz.</p>
+
+<h1 id="referans">Referans</h1>
+<ul>
+  <li>https://trac.torproject.org/projects/tor/wiki/TorRelayGuide</li>
+</ul>
 
       </div>
 

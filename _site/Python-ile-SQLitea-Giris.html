@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-04T01:30:00+03:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Python-ile-SQLitea-Giris"},"author":{"@type":"Person","name":"furkan önder"},"description":"Python ile SQLite kullanımı","@type":"BlogPosting","url":"http://localhost:4000/Python-ile-SQLitea-Giris","headline":"Python ile SQLite’a Giriş","dateModified":"2018-08-04T01:30:00+03:00","datePublished":"2018-08-04T01:30:00+03:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"furkan önder"},"description":"Python ile SQLite kullanımı","@type":"BlogPosting","headline":"Python ile SQLite’a Giriş","dateModified":"2018-08-04T01:30:00+03:00","datePublished":"2018-08-04T01:30:00+03:00","url":"http://localhost:4000/Python-ile-SQLitea-Giris","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Python-ile-SQLitea-Giris"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -62,114 +62,127 @@
       </div>
 
       <div class="panel-body">
-        Merhaba,<br/>
-Bu yazımızda Python’da Veritabanı Programlama’ya bir giriş yapıcağız.Bunun için Dolar/Tl kurundaki alış ,satış değerlerini ve bu değerleri elde ettiğimiz tarih ve saati veritabanına kaydeden küçük bir bot yazacağız.Veritabanını, içinde bilgi saklanabilen,birbiriyle ilişkili olan verilerin tutulduğu, yönetilebilir, güncellenebilir ve taşınabilir bilgi topluluğu olarak adlandırabiliriz.<br/><br/>
+        <p>Merhaba,
+Bu yazımızda Python’da Veritabanı Programlama’ya bir giriş yapıcağız.Bunun için Dolar/Tl kurundaki alış ,satış değerlerini ve bu değerleri elde ettiğimiz tarih ve saati veritabanına kaydeden küçük bir bot yazacağız.Veritabanını, içinde bilgi saklanabilen,birbiriyle ilişkili olan verilerin tutulduğu, yönetilebilir, güncellenebilir ve taşınabilir bilgi topluluğu olarak adlandırabiliriz.</p>
 
-<b>SQLite Ve Python</b><br/>
-SQLite, python programlama dilinde varsayılan olarak gelen bir veritabanıdır. Django ve Flask gibi python ile yazılan Web Frameworklerde de  varsayılan olarak SQLite gelmektedir.SQLite, diğer veritabanlarına göre kolay bir yapıya sahiptir.<br /><br/>
+<h2 id="sqlite-ve-python">SQLite Ve Python</h2>
+<p>SQLite, python programlama dilinde varsayılan olarak gelen bir veritabanıdır. Django ve Flask gibi python ile yazılan Web Frameworklerde de  varsayılan olarak SQLite gelmektedir.SQLite, diğer veritabanlarına göre kolay bir yapıya sahiptir.</p>
 
-<b>Veritabanımızı Oluşturalım</b><br/>
+<h2 id="veritabanımızı-oluşturalım">Veritabanımızı Oluşturalım</h2>
+<p>Öncelikle sqlite3 kütüphanesini kodumuza dahil edelim.</p>
 
-Öncelikle sqlite3 kütüphanesini kodumuza dahil edelim.
-<pre class="brush:python"> import sqlite </pre>
-Veritabanımızı connect() methodu ile oluşturalım.
-<pre class="brush:python"> vt = sqlite3.connect('kur.db') </pre>
-Veritabanı üzerinde işlem yapabilmek bir imleçe ihtiyaç duyarız. cursor() methodu ile imlecimizi oluşturalım.
-<pre class="brush:python"> imlec = vt.cursor() </pre>
-Tablo oluşturmak için execute methodunu kullanıyoruz.kurTablosu adında bir tablo oluşturalım.Integer türünde sira ;varchar türünde alis, satis ve zaman değerlerine sahip olsun.Sira değişkenine  AUTOINCREMENT özelliği ekleyerek veritabanına veriler eklendikçe sıra değişkeninin artmasını sağlayalım.
-<pre class="brush:python">
-imlec.execute('''
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import sqlite 
+</code></pre></div></div>
+
+<p>Veritabanımızı connect() methodu ile oluşturalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt = sqlite3.connect('kur.db') 
+</code></pre></div></div>
+
+<p>Veritabanı üzerinde işlem yapabilmek bir imleçe ihtiyaç duyarız. cursor() methodu ile imlecimizi oluşturalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imlec = vt.cursor() 
+</code></pre></div></div>
+
+<p>Tablo oluşturmak için execute methodunu kullanıyoruz.kurTablosu adında bir tablo oluşturalım.Integer türünde sira ;varchar türünde alis, satis ve zaman değerlerine sahip olsun.Sira değişkenine  AUTOINCREMENT özelliği ekleyerek veritabanına veriler eklendikçe sıra değişkeninin artmasını sağlayalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imlec.execute('''
     CREATE TABLE kurTablosu(
     sira INTEGER PRIMARY KEY AUTOINCREMENT,
     alis VARCHAR,
     satis VARCHAR,
     zaman VARCHAR )''')
-</pre>
-Verilerimizi veritabanına commit metodu ile işleyelim.
+</code></pre></div></div>
 
-<pre class="brush:python"> vt.commit() </pre>
+<p>Verilerimizi veritabanına commit metodu ile işleyelim.</p>
 
-close() metodu ile veritabanı bağlantımızı kapatalım.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt.commit() 
+</code></pre></div></div>
 
-<pre class="brush:python"> vt.close() </pre>
+<p>close() metodu ile veritabanı bağlantımızı kapatalım.</p>
 
-<br/><b>Veritabanı İçin Verilerin Elde Edilmesi</b><br/>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt.close() 
+</code></pre></div></div>
 
-Veritabanına eklemek için Dolar/Tl kurundaki alış ,satış değerlerini elde etmemiz gerekiyor.
-Bunu kullanımımıza sunulan bir API ile kolayca yapabiliriz.API, Application Programming Interface(Uygulama Programlama Arayüzü) kelimelerinin baş harflerinden oluşan bir kısaltmadır.
-API’ı bir uygulamaya ait işlevlerin başka bir uygulamada kullanılmış bir arayüz olarak tanımlayabiliriz.
-(API hakkında daha fazla bilgi edinmek için <a href="http://www.wiki-zero.co/index.php?q=aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQXBwbGljYXRpb25fcHJvZ3JhbW1pbmdfaW50ZXJmYWNl" target="_blank"> burayı</a> ziyaret edebilirsiniz.)
+<h2 id="veritabanı-i̇çin-verilerin-elde-edilmesi">Veritabanı İçin Verilerin Elde Edilmesi</h2>
+<p>Veritabanına eklemek için Dolar/Tl kurundaki alış ,satış değerlerini elde etmemiz gerekiyor.
+Bunu kullanımımıza sunulan bir API ile kolayca yapabiliriz.API, Application Programming Interface(Uygulama Programlama Arayüzü) kelimelerinin baş harflerinden oluşan bir kısaltmadır.API’ı bir uygulamaya ait işlevlerin başka bir uygulamada kullanılmış bir arayüz olarak tanımlayabiliriz.
+(API hakkında daha fazla bilgi edinmek için <a href="http://www.wiki-zero.co/index.php?q=aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQXBwbGljYXRpb25fcHJvZ3JhbW1pbmdfaW50ZXJmYWNl" target="_blank"> burayı</a> ziyaret edebilirsiniz.)</p>
 
-Dolar/Tl kurundaki alış ve satış değerlerini elde etmek için dolar adında bir fonksiyon yazalım.
-<br />
-<pre class="brush:python">
-def dolar():
+<p>Dolar/TL kurundaki alış ve satış değerlerini elde etmek için dolar adında bir fonksiyon yazalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def dolar():
     url = 'https://www.doviz.com/api/v1/currencies/USD/latest'
     istek = urllib.request.Request(url)
     i = urllib.request.urlopen(istek).read()
     veri = json.loads(i.decode('utf-8'))
 
     return veri['buying'], veri['selling']
-</pre>
-API adresimizi url değişkenine atadık.Request fonksiyonu ile url ‘e bir istek yolladık.urlopen() fonksiyonu ile isteği açtık ve read() fonksiyonu ile okuduk.Okuduğumuz bu isteği  utf-8 türünde çözümleyip json şekline dönüştürdük.Ve son olarak  veri['buying'], veri['selling'] şeklinde alış ve satış değerlerini elde ettik ve bu iki değeri döndürdük.
+</code></pre></div></div>
 
-<br/></br><b>Veritabanına Verilerin Eklenmesi</b><br/>
+<p>API adresimizi url değişkenine atadık.Request fonksiyonu ile url ‘e bir istek yolladık.urlopen() fonksiyonu ile isteği açtık ve read() fonksiyonu ile okuduk.Okuduğumuz bu isteği  utf-8 türünde çözümleyip json şekline dönüştürdük.Ve son olarak  veri[‘buying’], veri[‘selling’] şeklinde alış ve satış değerlerini elde ettik ve bu iki değeri döndürdük.</p>
 
-Dolar() fonksiyonunu kullanarak verilerimizi elde etmiştik.Şimdi ise bu verileri veritabanına eklemeliyiz.Bunun için ise vtEkle fonksiyonu yazalım.
+<h1 id="veritabanına-verilerin-eklenmesi">Veritabanına Verilerin Eklenmesi</h1>
+<p>Dolar() fonksiyonunu kullanarak verilerimizi elde etmiştik.Şimdi ise bu verileri veritabanına eklemeliyiz.Bunun için ise vtEkle fonksiyonu yazalım.</p>
 
-Fonksiyonumuz 3 parametre alsın.alis ,satis ve TarihVeSaat bilgisi.
-<pre class="brush:python"> def vtEkle(alis, satis, TarihVeSaat):  </pre>
+<p>Fonksiyonumuz 3 parametre alsın.alis ,satis ve TarihVeSaat bilgisi.</p>
 
-Daha önce oluşturduğumuz  kur.db veri tabanına bağlanalım.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def vtEkle(alis, satis, TarihVeSaat):
+</code></pre></div></div>
 
-<pre class="brush:python"> vt = sqlite3.connect('kur.db')  </pre>
+<p>Daha önce oluşturduğumuz  kur.db veri tabanına bağlanalım.</p>
 
-Bir imleç oluşturalım.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt = sqlite3.connect('kur.db')
+</code></pre></div></div>
 
-<pre class="brush:python"> imlec = vt.cursor()  </pre>
+<p>Bir imleç oluşturalım.</p>
 
-Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım ve execute metodu ile çalıştıralım.
-(SQL hakkında daha fazla bilgi edinmek için <a href="https://www.w3schools.com/sql/" target="_blank"> burayı</a> ziyaret edebilirsiniz.)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imlec = vt.cursor()
+</code></pre></div></div>
 
-<pre class="brush:python">
-imlec.execute("INSERT INTO kurTablosu (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
-</pre>
+<p>Tablomuza verileri eklemek için bir SQL sorgusu yazmamız gerekiyor.Bunun için bir sorgu yazalım ve execute metodu ile çalıştıralım.(SQL hakkında daha fazla bilgi edinmek için <a href="https://www.w3schools.com/sql/" target="_blank"> burayı</a> ziyaret edebilirsiniz.)</p>
 
-Verilerimizi veritabanına commit metodu ile işleyelim.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>imlec.execute("INSERT INTO kurTablosu (alis,satis,zaman) VALUES(?,?,?)", (alis, satis, TarihVeSaat))
+</code></pre></div></div>
 
-<pre class="brush:python"> vt.commit()  </pre>
+<p>Verilerimizi veritabanına commit metodu ile işleyelim.</p>
 
-close() metodu ile veritabanı bağlantımızı kapatalım.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt.commit()
+</code></pre></div></div>
 
-<pre class="brush:python"> vt.close()  </pre>
+<p>close() metodu ile veritabanı bağlantımızı kapatalım.</p>
 
-<br/><b>Neredeyse Bitti!</b><br/>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vt.close()
+</code></pre></div></div>
 
-Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.
+<h2 id="neredeyse-bitti">Neredeyse Bitti!</h2>
 
-<pre class="brush:python"> while True:
+<p>Kodumuz tamamlanmak üzere küçük bir eksiğimiz var.Veri tabanımıza belli aralıklarla Dolar/Tl kurundaki alış,satış,tarih ve saat bilgilerini veri tabanına eklememiz gerekiyor.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while True:
     alis, satis = dolar()
     print("Alış:", alis, "Satış:", satis, "Tarih ve Saat:", datetime.datetime.now())
     vtEkle(str(alis), str(satis), str(datetime.datetime.now()))
     time.sleep(300)
-</pre>
-Bir döngü oluşturduk. dolar() fonksiyonumuzu çağırdık ve dönen değerleri alis ve satis değişkenine atadık.Tarih ve Saat bilgisi için datetime modülünden yararlandık.Alış ,satış, Tarih ve Saat bilgilerini vtEkle() fonksiyonu gönderdik. time.sleep(300) ile her  5 dk da  bir veritabanına verilerimizi  ekledik.
+</code></pre></div></div>
 
-<br/><br/><b>Veritabanındaki Verileri Okumak</b><br/>
-Veritabanımıza eklediğimiz bilgileri okuyalım.Bunu linux komut satırından kolayca yapabiliriz.
-Bunun için sqlite3 paketinin yüklü olması gerekiyor.
-<br/> <br/>
-<a href="/assets/images/konsol.png" imageanchor="1"><img style="display: block;margin: 0 auto;"  src="/assets/images/konsol.png" /></a></span><br />
-Terminalimizi veri tabanımızın olduğu dizinde açalım.
-<br/>
+<p>Bir döngü oluşturduk. dolar() fonksiyonumuzu çağırdık ve dönen değerleri alis ve satis değişkenine atadık.Tarih ve Saat bilgisi için datetime modülünden yararlandık.Alış ,satış, Tarih ve Saat bilgilerini vtEkle() fonksiyonu gönderdik. time.sleep(300) ile her  5 dk da  bir veritabanına verilerimizi  ekledik.</p>
+
+<h2 id="veritabanındaki-verileri-okumak">Veritabanındaki Verileri Okumak</h2>
+<p>Veritabanımıza eklediğimiz bilgileri okuyalım.Bunu linux komut satırından kolayca yapabiliriz.
+Bunun için sqlite3 paketinin yüklü olması gerekiyor.</p>
+
+<p><a href="/assets/images/konsol.png" imageanchor="1">
+  <img style="display: block;margin: 0 auto;" src="/assets/images/konsol.png" />
+</a></p>
+
+<p>Terminalimizi veri tabanımızın olduğu dizinde açalım.
 Veritabanına girmek <b>sqlite3 kur.db</b> yazalım
-<br/>
 <b>.tables</b> ile veritabanındaki tablo isimlerine bakalım.
-<br/>
-<b>SELECT * FROM kurTablosu;</b> sql sorgusunu yazarak tablomuzu görelim.
-<br/><br/>
-Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder.github.io/tree/master/codes/dolarKuruSqlite.py/" target="_blank"> buraya </a>bakabilirsiniz.İyi çalışmalar dilerim.
-<br/>
+<b>SELECT * FROM kurTablosu;</b> sql sorgusunu yazarak tablomuzu görelim.</p>
+
+<p>Kodun tam hali görmek için <a href="https://github.com/furkanonder/furkanonder.github.io/tree/master/codes/dolarKuruSqlite.py/" target="_blank"> buraya </a>bakabilirsiniz.İyi çalışmalar dilerim.</p>
+
       </div>
 
       <div class="panel-footer">

@@ -18,7 +18,7 @@ Rtl-sdr ile uğraşırken sinyal aralağının çok geniş olduğu aklıma geldi
 
 Rtl-sdr ne derseniz, sdr kelimesinin açılımı “Software Defined Radio” (yazılım tabanlı radyo).Yazılımla kolayca kontrol edilebilmesi ve geniş bir frekans aralığına sahip olduğu için kullanışlı olmasından dolayı çok popüler.Fm radyo dinleyebiliyorsunuz,üzerinizden geçen uydulardan sinyal alabiliyorsunuz, TV yayını alabiliyorsunuz ve daha bir çok amaç için kullanabiliyorsunuz.
 
-# Gelelim GSM’e
+## Gelelim GSM’e
 GSM ağına rtl-sdr ile nasıl dahil olabiliriz,sinyal alabiliriz? [Gimp](https://www.gimp.org/) ile işe güzel bir çizim yaparak anlatmayı düşündüm :)
 
 <a href="/assets/images/gsm/baz.png" imageanchor="1">
@@ -33,26 +33,27 @@ Kırmızı ve mavi olan kuleler  çevremizdeki gerçek baz istasyonlarımız ols
 </a>
 
 ### Donanım
-  * Rtl-Sdr 
+* Rtl-Sdr 
 
 Yukarıda resimde kullandığım rtl-sdr ‘a görüyorsunuz.RTL2832u entegresine sahip herhangi bir rtl-sdr kullabilirsiniz.Yurt içindeki ve dışındaki internet siteleri üzerinde satılıyor.
 
 ### Yazılım
-  * [Wireshark](https://www.wireshark.org/) – Paketlerimizi incelemek için kullanacağız.
-  * [Gr-gsm](https://github.com/ptrkrysik/gr-gsm) – Sinyallerimizi yakalamak için kullancağız.
-  * [kalibrate-rtl](https://github.com/steve-m/kalibrate-rtl) – Rtl-sdr’ın kalibrasyonunu için kullanacağız.
-  * [IMSI-catcher]( https://github.com/Oros42/IMSI-catcher) –  IMSI verilerini bize gösteren bir python betiği.
-  * Gnu/Linux tabanlı bir işletim sistemi(Windows üzerinde bu işlemler yapılabiliyor ama ben bütün denemeleri Gnu/Linux tabanlı bir işletim sisteminde denedim)
+* [Wireshark](https://www.wireshark.org/) – Paketlerimizi incelemek için kullanacağız.
+* [Gr-gsm](https://github.com/ptrkrysik/gr-gsm) – Sinyallerimizi yakalamak için kullancağız.
+* [kalibrate-rtl](https://github.com/steve-m/kalibrate-rtl) – Rtl-sdr’ın kalibrasyonunu için kullanacağız.
+* [IMSI-catcher]( https://github.com/Oros42/IMSI-catcher) –  IMSI verilerini bize gösteren bir python betiği.
+* Gnu/Linux tabanlı bir işletim sistemi(Windows üzerinde bu işlemler yapılabiliyor ama ben bütün denemeleri Gnu/Linux tabanlı bir işletim sisteminde denedim)
 
 
-# Hadi Başlayalım 
+## Hadi Başlayalım 
 Öncelikle işe rtl-sdr’imızın kalibrasyonu yapmak ile başlıyoruz.
 ```
 kal -s GSM900 -g 40
 ```
 komutunu çalıştırıyoruz.
 
-GSM standardında ihtiyaca göre frekans aralıklarına bölünmüş GSM için radyo frekansları vardır.GSM900 bunlardan en yaygını olan olduğu için ilk parametremiz bu olacak. Yapacağımız aramanın dbi aralığını ise 40 olarak olarak ayarladık.    
+GSM standardında ihtiyaca göre frekans aralıklarına bölünmüş GSM için radyo frekansları vardır.GSM900 bunlardan en yaygını olan olduğu için ilk parametremiz bu olacak. Yapacağımız aramanın dbi aralığını ise 40 olarak olarak ayarladık.   
+ 
 <a href="/assets/images/gsm/kal.png" imageanchor="1">
   <img style="display: block;margin: 0 auto;width: 33em;" src="/assets/images/gsm/kal.png"/>
 </a>
@@ -87,8 +88,7 @@ LAPDm:
   * Identity Request 
 
 
-# Gelelim paketleri incelemeye....
-
+## Gelelim paketleri incelemeye....
 GSMTAP protokolü System Information Type 4 paketini inceliğimizde Local Area Identification( Konum Alanı Kimliği) kısmı gözümü çarpıyor.
 
 Local Area Identification (Konum Alanı Kimliği), bir mobil ağ içindeki bir konum alanını (LA) benzersiz şekilde tanımlar. Mobil Ülke Kodu (MCC), Mobil Şebeke Kodu (MNC) ve Konum Alan Kodu'ndan (LAC) oluşur. LAI, ağdaki mobil aboneleri takip etmek için kullanılır. Bu kayıt, GSM şebekesindeki Visitor Location Register  (Ziyaretçi Yer Kaydı)  gibi bir veri tabanında tutuluyor.
@@ -105,13 +105,10 @@ Yukarıda resimde bunları görebiliyoruz. MCC kodu Türkiye için 286, MNC kodu
 
 GSMTAP protokolü  üzerinde Ciphering Mode Command Identification kısmını  görüyoruz.Tahmin ettiğimiz gibi GSM üzerindeki haberleşmemizi güvenli kılan yapılardan biri.A5/3 algorithması kullanılarak verilerimiz şifreleniyor.Hemen aklınıza gelebilir bu şifrelemeyi çözebilirmiyiz? Internet üzerinde şifrelemeyi çözmeyi gösteren video ve yazılar var.
 
-Not: A5/3 algorithması kırmayı denediğiniz takdirde olacaklardan sorumlu değilim.Bu yazıdaki amacım GSM teknolojisinin hakkında biraz bilgi edinmek.
+<b>Not:</b> A5/3 algorithması kırmayı denediğiniz takdirde olacaklardan sorumlu değilim.Bu yazıdaki amacım GSM teknolojisinin hakkında biraz bilgi edinmek.
 
-
-# IMSI Catcher(Yakalayıcı)
-
+## IMSI Catcher(Yakalayıcı)
 International Mobile Subscriber Identity (Uluslararası mobil abone kimliği) hücresel bir ağın her kullanıcısını benzersiz şekilde tanımlayan bir sayıdır. Gizli dinleyicilerin telsiz arabirimindeki aboneyi tanımlamasını ve izlemesini önlemek için IMSI nadiren gönderiliyor ve bunun yerine rastgele oluşturulmuş bir TMSI gönderiliyor.
-
 
 [IMSI-catcher](https://github.com/Oros42/IMSI-catcher) içerisinde bulunan  simple_IMSI-catcher.py betiğini çalıştıralım.
 
@@ -132,5 +129,9 @@ Mobil Network Code (Mobil Şebeke Kodu), GSM operatörlerin ülke içerisinde ku
 * Son 10 rakam:
 Mobile identification number (Mobil Tanımlama Kodu),GSM operatörünün kendisinin belirlediği bir değer.
 
-
 Biraz uzun bir yazı oldu.Umarım hoşunuza gitmiştir.İyi çalışmalar.
+
+## Referanslar
+* https://en.wikipedia.org/wiki/GSM
+* https://en.wikipedia.org/wiki/International_mobile_subscriber_identity
+* https://en.wikipedia.org/wiki/IMSI-catcher

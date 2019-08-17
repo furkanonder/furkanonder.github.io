@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-08-11T12:00:00+03:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/rtl-sdr-ile-gsm-aginda-sinyal-analizi"},"author":{"@type":"Person","name":"furkan önder"},"description":"rtl-sdr kullanarak GSM ağında sinyal analizi","@type":"BlogPosting","url":"http://localhost:4000/rtl-sdr-ile-gsm-aginda-sinyal-analizi","headline":"Rtl-Sdr ile GSM Ağında Sinyal Analizi","dateModified":"2019-08-11T12:00:00+03:00","datePublished":"2019-08-11T12:00:00+03:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"furkan önder"},"description":"rtl-sdr kullanarak GSM ağında sinyal analizi","@type":"BlogPosting","headline":"Rtl-Sdr ile GSM Ağında Sinyal Analizi","dateModified":"2019-08-11T12:00:00+03:00","datePublished":"2019-08-11T12:00:00+03:00","url":"http://localhost:4000/rtl-sdr-ile-gsm-aginda-sinyal-analizi","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/rtl-sdr-ile-gsm-aginda-sinyal-analizi"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -68,7 +68,7 @@
 
 <p>Rtl-sdr ne derseniz, sdr kelimesinin açılımı “Software Defined Radio” (yazılım tabanlı radyo).Yazılımla kolayca kontrol edilebilmesi ve geniş bir frekans aralığına sahip olduğu için kullanışlı olmasından dolayı çok popüler.Fm radyo dinleyebiliyorsunuz,üzerinizden geçen uydulardan sinyal alabiliyorsunuz, TV yayını alabiliyorsunuz ve daha bir çok amaç için kullanabiliyorsunuz.</p>
 
-<h1 id="gelelim-gsme">Gelelim GSM’e</h1>
+<h2 id="gelelim-gsme">Gelelim GSM’e</h2>
 <p>GSM ağına rtl-sdr ile nasıl dahil olabiliriz,sinyal alabiliriz? <a href="https://www.gimp.org/">Gimp</a> ile işe güzel bir çizim yaparak anlatmayı düşündüm :)</p>
 
 <p><a href="/assets/images/gsm/baz.png" imageanchor="1">
@@ -98,14 +98,15 @@
   <li>Gnu/Linux tabanlı bir işletim sistemi(Windows üzerinde bu işlemler yapılabiliyor ama ben bütün denemeleri Gnu/Linux tabanlı bir işletim sisteminde denedim)</li>
 </ul>
 
-<h1 id="hadi-başlayalım">Hadi Başlayalım</h1>
+<h2 id="hadi-başlayalım">Hadi Başlayalım</h2>
 <p>Öncelikle işe rtl-sdr’imızın kalibrasyonu yapmak ile başlıyoruz.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kal -s GSM900 -g 40
 </code></pre></div></div>
 <p>komutunu çalıştırıyoruz.</p>
 
-<p>GSM standardında ihtiyaca göre frekans aralıklarına bölünmüş GSM için radyo frekansları vardır.GSM900 bunlardan en yaygını olan olduğu için ilk parametremiz bu olacak. Yapacağımız aramanın dbi aralığını ise 40 olarak olarak ayarladık.  <br />
-<a href="/assets/images/gsm/kal.png" imageanchor="1">
+<p>GSM standardında ihtiyaca göre frekans aralıklarına bölünmüş GSM için radyo frekansları vardır.GSM900 bunlardan en yaygını olan olduğu için ilk parametremiz bu olacak. Yapacağımız aramanın dbi aralığını ise 40 olarak olarak ayarladık.</p>
+
+<p><a href="/assets/images/gsm/kal.png" imageanchor="1">
   <img style="display: block;margin: 0 auto;width: 33em;" src="/assets/images/gsm/kal.png" />
 </a></p>
 
@@ -141,8 +142,7 @@ Sağ tarafta frequency bölümene gelip daha önce kalibre ettiğimizde elde ett
   <li>Identity Request</li>
 </ul>
 
-<h1 id="gelelim-paketleri-incelemeye">Gelelim paketleri incelemeye….</h1>
-
+<h2 id="gelelim-paketleri-incelemeye">Gelelim paketleri incelemeye….</h2>
 <p>GSMTAP protokolü System Information Type 4 paketini inceliğimizde Local Area Identification( Konum Alanı Kimliği) kısmı gözümü çarpıyor.</p>
 
 <p>Local Area Identification (Konum Alanı Kimliği), bir mobil ağ içindeki bir konum alanını (LA) benzersiz şekilde tanımlar. Mobil Ülke Kodu (MCC), Mobil Şebeke Kodu (MNC) ve Konum Alan Kodu’ndan (LAC) oluşur. LAI, ağdaki mobil aboneleri takip etmek için kullanılır. Bu kayıt, GSM şebekesindeki Visitor Location Register  (Ziyaretçi Yer Kaydı)  gibi bir veri tabanında tutuluyor.</p>
@@ -159,10 +159,9 @@ Sağ tarafta frequency bölümene gelip daha önce kalibre ettiğimizde elde ett
 
 <p>GSMTAP protokolü  üzerinde Ciphering Mode Command Identification kısmını  görüyoruz.Tahmin ettiğimiz gibi GSM üzerindeki haberleşmemizi güvenli kılan yapılardan biri.A5/3 algorithması kullanılarak verilerimiz şifreleniyor.Hemen aklınıza gelebilir bu şifrelemeyi çözebilirmiyiz? Internet üzerinde şifrelemeyi çözmeyi gösteren video ve yazılar var.</p>
 
-<p>Not: A5/3 algorithması kırmayı denediğiniz takdirde olacaklardan sorumlu değilim.Bu yazıdaki amacım GSM teknolojisinin hakkında biraz bilgi edinmek.</p>
+<p><b>Not:</b> A5/3 algorithması kırmayı denediğiniz takdirde olacaklardan sorumlu değilim.Bu yazıdaki amacım GSM teknolojisinin hakkında biraz bilgi edinmek.</p>
 
-<h1 id="imsi-catcheryakalayıcı">IMSI Catcher(Yakalayıcı)</h1>
-
+<h2 id="imsi-catcheryakalayıcı">IMSI Catcher(Yakalayıcı)</h2>
 <p>International Mobile Subscriber Identity (Uluslararası mobil abone kimliği) hücresel bir ağın her kullanıcısını benzersiz şekilde tanımlayan bir sayıdır. Gizli dinleyicilerin telsiz arabirimindeki aboneyi tanımlamasını ve izlemesini önlemek için IMSI nadiren gönderiliyor ve bunun yerine rastgele oluşturulmuş bir TMSI gönderiliyor.</p>
 
 <p><a href="https://github.com/Oros42/IMSI-catcher">IMSI-catcher</a> içerisinde bulunan  simple_IMSI-catcher.py betiğini çalıştıralım.</p>
@@ -191,6 +190,13 @@ Mobile identification number (Mobil Tanımlama Kodu),GSM operatörünün kendisi
 </ul>
 
 <p>Biraz uzun bir yazı oldu.Umarım hoşunuza gitmiştir.İyi çalışmalar.</p>
+
+<h2 id="referanslar">Referanslar</h2>
+<ul>
+  <li>https://en.wikipedia.org/wiki/GSM</li>
+  <li>https://en.wikipedia.org/wiki/International_mobile_subscriber_identity</li>
+  <li>https://en.wikipedia.org/wiki/IMSI-catcher</li>
+</ul>
 
       </div>
 

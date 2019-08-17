@@ -22,7 +22,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-01-14T00:00:00+03:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi"},"author":{"@type":"Person","name":"Furkan Önder"},"description":"Monte Carlo Metodu ile Pi Sayısının Hesaplanması","@type":"BlogPosting","url":"http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi","headline":"Monte Carlo Metodu ile Pi Sayısının Hesaplanması","dateModified":"2018-01-14T00:00:00+03:00","datePublished":"2018-01-14T00:00:00+03:00","@context":"http://schema.org"}</script>
+{"author":{"@type":"Person","name":"Furkan Önder"},"description":"Monte Carlo Metodu ile Pi Sayısının Hesaplanması","@type":"BlogPosting","headline":"Monte Carlo Metodu ile Pi Sayısının Hesaplanması","dateModified":"2018-01-14T00:00:00+03:00","datePublished":"2018-01-14T00:00:00+03:00","url":"http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Monte-Carlo-Methodu-Ile-Pi-Sayisinin-Hesaplanmasi"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -62,92 +62,109 @@
       </div>
 
       <div class="panel-body">
-        Merhaba,
-Bugünki yazımda Monte Carlo Metodu ile pi sayısının hesaplanmasını anlatacağım.Öncelikle  Monte Carlo Metodu’nu tanıyalım.<br />
-<br />
-Monte Carlo Metodu, genel olarak istatistiksel simülasyonların yapılması için rastgele  sayılardan  faydalanılan bir metot olarak tanımlayabiliriz. Los Alamos Bilimsel Laboratuar’ından John Von Neumann, Stan Ulam ve Nick Metropolis adlarında üç bilim adamı tarafından ortaya çıkarılmıştır.Monte Carlo metodu ilk defa II.Dünya Savaşı sırasında atom bombasının geliştirilmesi ile ilgili problemlere uygulanmıştır.Günümüzde bu metot,Hücre Simülasyonu, Borsa Modelleri, Dağılım Fonksiyonları,Atom ve Molekül Fiziği, Nükleer Fizik modellerini test eden simülasyonlarının hesaplanmalarında kullanılır.<br />
-<br />
-Şimdi Monte Carlo Metodu ile pi sayısının hesaplanmasına geçelim.Alanı 4 birim kare olan bir kare düşünelim. Karenin içine de teğet olarak yerleştirilmiş  yarıçapı 1 birim olan bir çember(birim çember)çizelim. <br />
-<a href="/assets/images/cember.png" imageanchor="1"><img style="display: block;margin: 0 auto;height:300px;width:300px;"  src="/assets/images/cember.png" /></a></span><br />
-Karenin içine kordinatları Z(a, b) noktası gibi rastgele atışlar gerçekleştirelim.Yaptığımız rastgele atışların bir kısmı çemberin içinde bir kısmı ise dışında olacaktır.Yapılan atışların:<br />
-<a href="/assets/images/ydenk.png" imageanchor="1"></a><img  src="/assets/images/ydenk.png" style="display: block;margin: 0 auto;height:260;width:260;" />
-olarak hesaplanır.Elde ettiğimiz bu ifadeyi 4 ile çarptığımızda ise yaklaşık olarak pi sayısını elde ederiz.
-<br />
-<br></br>
-<a href="/assets/images/atis.gif" imageanchor="1"></a> <img src="/assets/images/atis.gif"
-style="display: block;margin: 0 auto;height:300px;width:300px;" />
-<div style="text-align: center;">Yapılan rastgele atışların simule edilmiş hali</div>
-<br></br>
-Programlama dilleri ile Monte Carlo Metodu'nu kullanılarak pi sayısının hesaplanması için yazılmış olan kodları inceleyelim.<br />
-<br />
-Python:
-<pre class="brush:python">#Created by Furkan Taha ÖNDER on  14.01.2018.
-import random
+        <p>Merhaba,
+Bugünki yazımda Monte Carlo Metodu ile pi sayısının hesaplanmasını anlatacağım.Öncelikle  Monte Carlo Metodu’nu tanıyalım.</p>
+
+<p>Monte Carlo Metodu, genel olarak istatistiksel simülasyonların yapılması için rastgele  sayılardan  faydalanılan bir metot olarak tanımlayabiliriz. Los Alamos Bilimsel Laboratuar’ından John Von Neumann, Stan Ulam ve Nick Metropolis adlarında üç bilim adamı tarafından ortaya çıkarılmıştır.Monte Carlo metodu ilk defa II.Dünya Savaşı sırasında atom bombasının geliştirilmesi ile ilgili problemlere uygulanmıştır.Günümüzde bu metot,Hücre Simülasyonu, Borsa Modelleri, Dağılım Fonksiyonları,Atom ve Molekül Fiziği, Nükleer Fizik modellerini test eden simülasyonlarının hesaplanmalarında kullanılır.</p>
+
+<p>Şimdi Monte Carlo Metodu ile pi sayısının hesaplanmasına geçelim.Alanı 4 birim kare olan bir kare düşünelim. Karenin içine de teğet olarak yerleştirilmiş  yarıçapı 1 birim olan bir çember(birim çember) çizelim.</p>
+
+<p><a href="/assets/images/cember.png" imageanchor="1">
+  <img style="display: block;margin: 0 auto;height:300px;width:300px;" src="/assets/images/cember.png" />
+</a></p>
+
+<p>Karenin içine kordinatları Z(a, b) noktası gibi rastgele atışlar gerçekleştirelim.Yaptığımız rastgele atışların bir kısmı çemberin içinde bir kısmı ise dışında olacaktır.Yapılan atışların:</p>
+
+<p><a href="/assets/images/ydenk.png" imageanchor="1">
+  <img src="/assets/images/ydenk.png" style="display: block;margin: 0 auto;height:260;width:260;" />
+</a></p>
+
+<p>olarak hesaplanır.Elde ettiğimiz bu ifadeyi 4 ile çarptığımızda ise yaklaşık olarak pi sayısını elde ederiz.</p>
+
+<p><a href="/assets/images/atis.gif" imageanchor="1">
+  <img src="/assets/images/atis.gif" style="display: block;margin: 0 auto;height:300px;width:300px;" />
+</a></p>
+
+<p><span style="text-align: center;">Yapılan rastgele atışların simule edilmiş hali</span></p>
+
+<p>Programlama dilleri ile Monte Carlo Metodu’nu kullanılarak pi sayısının hesaplanması için yazılmış olan kodları inceleyelim.</p>
+
+<p>Python:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import random
 icerde = 0
 
 for atis_sayisi in range(0, 1000000):
     a = random.random()
     b = random.random()
-    z= (a*a+b*b)**0.5
-    if z < 1:
-        icerde+= 1
-atis_sayisi+= 1
+    z = (a*a+b*b)**0.5
+    if z &lt; 1:
+        icerde += 1
+atis_sayisi += 1
 
-print("Pi sayisinin yaklasik degeri:",4.0 * icerde / atis_sayisi)
-</pre>
-C:
-<pre class="brush:cpp">//Created by Furkan Taha ÖNDER on 14.01.2018.
-#include &lt;<a>stdio.h</a>&gt;
-#include &lt;<a>stdlib.h</a>&gt;
-#include&lt;<a>time.h</a>&gt;
-#include &lt;<a>math.h</a>&gt;
+print("Pi sayisinin yaklasik degeri:", 4.0 * icerde / atis_sayisi)
+</code></pre></div></div>
+
+<p>C:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;time.h&gt;
+#include&lt;math.h&gt;
 int main(){
-    double a,b;
-    float atis_sayisi=0,icerdeki=0,pi,z;
-    srand(time(NULL));
+  double a,b;
+  float atis_sayisi=0,icerdeki=0,pi,z;
+  srand(time(NULL));
 
-    for (int i = 0; i < 1000000;i++){
-        atis_sayisi++;
-        a = (double)rand()/RAND_MAX*2.0-1.0;
-        b = (double)rand()/RAND_MAX*2.0-1.0;
-        z = sqrt(pow(a,2)+pow(b,2));
-        if(z<1)
-        icerdeki+=1;
-    }
+  for (int i = 0; i &lt; 1000000;i++){
+    atis_sayisi++;
+    a = (double)rand()/RAND_MAX*2.0-1.0;
+    b = (double)rand()/RAND_MAX*2.0-1.0;
+    z = sqrt(pow(a,2)+pow(b,2));
+    if(z&lt;1)
+    icerdeki+=1;
+  }
 
-    pi = 4*(icerdeki/atis_sayisi)*1.0;
-    printf("Pi sayisinin yaklasik degeri:%f\n",pi );
+  pi = 4*(icerdeki/atis_sayisi)*1.0;
+  printf("Pi sayisinin yaklasik degeri:%f\n",pi );
 
-    return 0;
+  return 0;
 }
-</pre>
-Java:
-<pre class="brush:java">//Created by Furkan Taha ÖNDER on  14.01.2018.
-import java.util.Random;
+</code></pre></div></div>
+
+<p>Java:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.util.Random;
 
 public class MonteCarlo {
-    private static Random rgen = new Random();
+  private static Random rgen = new Random();
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        int atis_sayisi = 0;
-        int icerde = 0;
+    int atis_sayisi = 0;
+    int icerde = 0;
 
-        for(int i = 0; i<1000000; i++){
-            double a = 2 * rgen.nextDouble() - 1;
-            double b = 2 * rgen.nextDouble() - 1;
-            atis_sayisi+=1;
-            if (Math.pow(a, 2) + Math.pow(b, 2) < 1) {
-                icerde+=1;
-            }
-        }
-        double pi = 4*(icerde*1.0/atis_sayisi);
-        System.out.println("Pi sayisinin yaklasik degeri: "+pi);
+    for(int i = 0; i&lt;1000000; i++){
+      double a = 2 * rgen.nextDouble() - 1;
+      double b = 2 * rgen.nextDouble() - 1;
+      atis_sayisi +=1 ;
+      if (Math.pow(a, 2) + Math.pow(b, 2) &lt; 1) {
+        icerde += 1;
+      }
     }
+    double pi = 4*(icerde*1.0/atis_sayisi);
+    System.out.println("Pi sayisinin yaklasik degeri: " + pi);
+  }
 }
-</pre>
+</code></pre></div></div>
 
-Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim. İyi Çalışmalar.
+<p>Kodlarda anlamadığınız yerleri yorum olarak yazarsanız, yardımcı olabilirim. İyi Çalışmalar.</p>
+
+<h2 id="referans">Referans</h2>
+<ul>
+  <li>https://en.wikipedia.org/wiki/Monte_Carlo_method</li>
+</ul>
+
       </div>
 
       <div class="panel-footer">
