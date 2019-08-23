@@ -3,6 +3,21 @@
   
     
     <url>
+      <loc>http://localhost:4000/C-kodunu-gdb-ile-disassemble-etmek</loc>
+      
+        <lastmod>2019-08-23T14:00:00+03:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
       <loc>http://localhost:4000/rtl-sdr-ile-gsm-aginda-sinyal-analizi</loc>
       
         <lastmod>2019-08-11T12:00:00+03:00</lastmod>
@@ -157,7 +172,7 @@
       <url>
         <loc>http://localhost:4000/404</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -174,7 +189,7 @@
       <url>
         <loc>http://localhost:4000/feed.xml</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -191,7 +206,7 @@
       <url>
         <loc>http://localhost:4000/etiketler/</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -208,7 +223,7 @@
       <url>
         <loc>http://localhost:4000/hakkimda/</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -225,7 +240,7 @@
       <url>
         <loc>http://localhost:4000/arsiv/</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -242,7 +257,7 @@
       <url>
         <loc>http://localhost:4000/</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>
@@ -261,7 +276,24 @@
       <url>
         <loc>http://localhost:4000/page2/</loc>
         
-          <lastmod>2019-08-17T23:37:19+03:00</lastmod>
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.3</priority>
+        
+      </url>
+      
+    
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/page3/</loc>
+        
+          <lastmod>2019-08-23T13:50:50+03:00</lastmod>
         
         
           <changefreq>monthly</changefreq>

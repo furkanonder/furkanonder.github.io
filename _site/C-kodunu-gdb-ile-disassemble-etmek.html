@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="/assets/css/custom.css" rel="stylesheet">
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>C kodunu gdb ile disassemble etmek | Furkan Önder</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="C kodunu gdb ile disassemble etmek" />
+<meta name="author" content="furkan önder" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Gdb hata ayıklayıcısı ile C kodunun disassemble edilmesi" />
+<meta property="og:description" content="Gdb hata ayıklayıcısı ile C kodunun disassemble edilmesi" />
+<link rel="canonical" href="http://localhost:4000/C-kodunu-gdb-ile-disassemble-etmek" />
+<meta property="og:url" content="http://localhost:4000/C-kodunu-gdb-ile-disassemble-etmek" />
+<meta property="og:site_name" content="Furkan Önder" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-08-23T14:00:00+03:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"furkan önder"},"description":"Gdb hata ayıklayıcısı ile C kodunun disassemble edilmesi","@type":"BlogPosting","headline":"C kodunu gdb ile disassemble etmek","dateModified":"2019-08-23T14:00:00+03:00","datePublished":"2019-08-23T14:00:00+03:00","url":"http://localhost:4000/C-kodunu-gdb-ile-disassemble-etmek","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/C-kodunu-gdb-ile-disassemble-etmek"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://furkanonder.github.io/">furkanönder</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://furkanonder.github.io/">Anasayfa</a></li>
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/arsiv/">Arşiv</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="ust" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="text-primary">C kodunu gdb ile disassemble etmek</h3>
+        <span class="text-muted">
+          <time datetime="23 August 2019">
+            23 Ağustos 2019
+          </time>
+      	</span>
+      </div>
+
+      <div class="panel-body">
+        <p>C kodu yazmak eğlencelidir özellikle gcc ile derliyorsunuz :D <a href="https://gcc.gnu.org/">Gcc</a> derleyicisini biliyorsanız, hata ayıklayıcısı olan <a href="https://www.gnu.org/software/gdb/">gdb</a>‘yi bilirsiniz.Mükemmel bir debugger… Gdb’yi ilk kullandığım zamanlarda çok karmaşık geliyordu.Anlamak için çaba sarf ettim.Öğrendiklerimide yazmaya karar verdim.</p>
+
+<h2 id="neler-lazım">Neler lazım?</h2>
+<ul>
+  <li>x86_64 bir Gnu/Linux dağıtımı</li>
+  <li>Gcc ve gdb</li>
+  <li>Assembly programlama bilgisi</li>
+</ul>
+
+<p>Assembly için <a href="https://0xax.github.io/asm_1/">adresinde</a> bulunan yazı dizisini takip edebilirsiniz ya da bu yazı dizisinin <a href="https://github.com/furkanonder/asm">çevirisini</a> takip edebilirsiniz.Bunların dışında assembly için yazılmış birçok kitap bulunuyor onlara da bakabilirsiniz….</p>
+
+<h2 id="başlıyoruz">Başlıyoruz</h2>
+<p>Disassemble etmesi kolay olması için basit bir kod parçasından başlayalım.
+Kodumuz sadece 0 değerini döndürüyor.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(){
+    return 0;
+}
+</code></pre></div></div>
+
+<p>Gcc ile derleyelim.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc test.c -o test
+</code></pre></div></div>
+
+<p>Derlenmiş olan dosyamızı gdb ile açalım.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb test
+</code></pre></div></div>
+
+<p>Gdb de varsayılan olarak AT&amp;T sözdizimine sahip assembly komutları geliyor.Ben bunu intel söz dizimine çeviriyorum.
+Okuması daha kolay geliyor…</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set disassembly-flavor intel
+</code></pre></div></div>
+
+<p>Söz dizimini ayarladıktan sonra main fonksiyonuzumu dissamble edelim.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disassemble  main
+</code></pre></div></div>
+
+<p>Karşımıza böyle bir şey çıktı…</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dump of assembler code for function main:
+   0x0000000000001119 &lt;+0&gt;:	    push   rbp
+   0x000000000000111a &lt;+1&gt;:	    mov    rbp,rsp
+   0x000000000000111d &lt;+4&gt;:	    mov    eax,0x0
+   0x0000000000001122 &lt;+9&gt;:	    pop    rbp
+   0x0000000000001123 &lt;+10&gt;:	    ret    
+End of assembler dump.
+</code></pre></div></div>
+
+<p>İlk satıra baktığımızda 0x0000000000001119 adresini ve yanında ise “push rbp” şeklinde bir assembly komutu görüyoruz.</p>
+
+<h2 id="peki-bunlar-ne-anlama-geliyor">Peki bunlar ne anlama geliyor?</h2>
+<p>Her fonksiyon bir prologue(başlangıç) ve bir epilogue(kapanışın) işleminin içine yerleştirilmiştir.&lt;+0&gt; ile &lt;+1&gt;’deki komutlar prologue işlemidir.Prologue işlemi fonksiyonunun kullanacağı register ve stack’i hazırlamak için yapılır.Rbp, geçerli stack çerçevesinin tabanını işaret eden bir register’dır.Burada rbp, main fonksiyonun stack çerçevesinin tabanına işaret ediyor.Rsp ise stack işaretçisi registeri’dır, geçerli stack çerçevesinin üstünü işaret eder.</p>
+
+<p>“push rbp” komutu ile rbp’ stack’in tabanına yerleştiriliyor.”mov rbp,rsp” komutu rsp’nin değerini rbp’ye kopyalanıyor.İkisinin de adresi stack çervesinin tabanını gösteriyor.Stack kullanıma hazır böylece prologue işlemimiz bitti.Stack’e bir şey koyulduğunda rsp stack’in üstünü işaret ederek azalacak.Peki neden azalıyor? Çünkü stack, yüksek hafıza adresinden düşük adrese doğru büyür.</p>
+
+<p>“mov eax, 0x0” ise C kodundaki “return 0”‘a karşılık geliyor.Eğer “return 0” yerine “return 1” yazsaydık, “mov eax 0x1” şeklinde bir komut görürdük.&lt;+9&gt; ve &lt;+10&gt;’daki komutlar ise epilogue(kapanış) işlemidir.Prologue işlemlerinin tersi yapar.”pop rbp” komutu ile stack’e pushlanan rbp’yi çıkarır.”ret” komutu ile fonksiyonun dönüş değerini döndürür.</p>
+
+<p>Referanslar:</p>
+<ul>
+  <li>http://en.wikipedia.org/wiki/Call_stack</li>
+  <li>https://en.wikipedia.org/wiki/Function_prologue</li>
+  <li>https://en.wikibooks.org/wiki/X86_Disassembly/The_Stack</li>
+</ul>
+
+      </div>
+
+      <div class="panel-footer">
+        <ul class="pager panel-info">
+          
+          <li class="next">
+            <a href="/rtl-sdr-ile-gsm-aginda-sinyal-analizi" data-toggle="tooltip" data-placement="top" title="">Önceki Gönderi &rarr;</a>
+          </li>
+          
+          
+          <div class="post-date"></div>
+          <div class="sharing-icons">
+            <div class="post-date">Sosyal Medyada Paylaş!</div>
+          	<a href="https://twitter.com/intent/tweet?text=C kodunu gdb ile disassemble etmek&amp;url=/C-kodunu-gdb-ile-disassemble-etmek" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/C-kodunu-gdb-ile-disassemble-etmek&amp;title=C kodunu gdb ile disassemble etmek" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/share?url=/C-kodunu-gdb-ile-disassemble-etmek" target="_blank"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="panel panel-info">
+      <div class="panel-body">
+        
+<div class="comments">
+  <div id="disqus_thread"></div>
+	<script>
+	(function() {
+	var d = document, s = d.createElement('script');
+	s.src = 'https://furkantahaonder.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row2">
+    <div class="col-md-12">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <span class="text-primary"><b>Son Gönderiler</b></span>
+        </div>
+        <div class="panel-body">
+          <ul>
+            
+            <li>
+              <a href="/C-kodunu-gdb-ile-disassemble-etmek">C kodunu gdb ile disassemble etmek</a>
+            </li>
+            
+            <li>
+              <a href="/rtl-sdr-ile-gsm-aginda-sinyal-analizi">Rtl-Sdr ile GSM Ağında Sinyal Analizi</a>
+            </li>
+            
+            <li>
+              <a href="/tor-relay-kurulumu">Tor Relay Kurulumu</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  </div>
+  <footer class="footer">
+  <div class="container footerBox">
+    <p class="copyright text-muted">
+      &#169; 2018 Furkan Önder.Powered by Github Pages and Jekyll.
+      <a href="https://github.com/furkanonder" target="_blank"><i style="font-size:28px; color:White" class="fa fa-github" ></i></a>
+      <a href="https://twitter.com/Fsyscall" target="_blank"><i style="font-size:28px; color:White" class="fa fa-twitter" ></i></a>      
+      <a href="https://www.linkedin.com/in/furkan-onder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-linkedin" ></i></a>
+      <a href="https://medium.com/@furkanonder/" target="_blank"><i style="font-size:28px; color:White" class="fa fa-medium" ></i></a>
+      <a href="/feed.xml" target="_blank"><i style="font-size:28px; color:White" class="fa fa-rss" ></i></a>
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108363583-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-108363583-1');
+	</script>
+
+
+
+
+</body>
+</html>
