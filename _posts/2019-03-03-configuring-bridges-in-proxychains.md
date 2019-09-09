@@ -32,6 +32,7 @@ We will use dynamic_chain. Remove the # in front of the dynamic_chain and add th
 
 Now, we need to make some changes to <b>/etc/tor/torrc</b>. At the bottom of the file we are writing these lines.
 
+To use the obfs4 bridge, we install the [obfs4proxy](https://github.com/Yawning/obfs4) tool.
 ```
 UseBridges 1
 ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed
@@ -47,7 +48,7 @@ It look like this:
   <img style="display: block;margin: 0 auto; width: 50em;" src="/assets/images/proxychains_2.png"/>
 </a>
 
-Now we need to set up a few programs. These are [obfs4proxy](https://github.com/Yawning/obfs4) and tor. After installing the programs, restart the tor service.
+Let's restart the tor service.
 
 ```
 systemctl restart tor
