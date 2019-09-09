@@ -12,7 +12,7 @@ tags:
 description: Configuring bridges in proxychains
 ---
 
-We are using sqlmap, nmap, nikto tools  etc. while dealing with cyber security. Sometimes we need to be anonymous when using these tools for testing. We are able to use proxychains for this.But...
+We are using sqlmap, nmap, nikto tools  etc. while dealing with cyber security. Sometimes we need to be anonymous when using these tools for testing. We are able to use [proxychains](https://github.com/haad/proxychains) for this.But...
 
 <a href="/assets/images/proxychains_1.png" imageanchor="1">
   <img style="display: block;margin: 0 auto;width: 43em;" src="/assets/images/proxychains_1.png"/>
@@ -47,7 +47,7 @@ It look like this:
   <img style="display: block;margin: 0 auto; width: 50em;" src="/assets/images/proxychains_2.png"/>
 </a>
 
-Now we need to set up a few programs. These are obfs4proxy and tor. After installing the programs, restart the tor service.
+Now we need to set up a few programs. These are [obfs4proxy](https://github.com/Yawning/obfs4) and tor. After installing the programs, restart the tor service.
 
 ```
 systemctl restart tor
