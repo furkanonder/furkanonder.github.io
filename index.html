@@ -14,9 +14,9 @@ layout: default
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="https://furkanonder.github.io/">Anasayfa</a></li>
-        <li><a href="/hakkimda/">Hakkımda</a></li>
-        <li><a href="/arsiv/">Arşiv</a></li>
+        <li class="active"><a href="https://furkanonder.github.io/">Home</a></li>
+        <li><a href="/hakkimda/">About</a></li>
+        <li><a href="/arsiv/">Archive</a></li>
       </ul>
     </div>
   </div>
@@ -34,14 +34,14 @@ layout: default
       {% endif %}
     </a>
     <p class="postMeta">
-      <time datetime="{{ post.date | %-d %B %Y" }}">
-        {{ post.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
+      <time datetime='{{ post.date | %-d %B %Y" }}'>
+        {{ post.date | date: "%-d %B %Y" }}
       </time>
     </p>
     <div class="postPreviewContent">
       {{ post.content | truncatewords: 30 | strip_html | xml_escape}}
       <br/><br/>
-      <a href="{{ post.url | prepend: site.baseurl }}" class="readMoreLink">&raquo; [Devamını&nbsp;oku...]</a>
+      <a href="{{ post.url | prepend: site.baseurl }}" class="readMoreLink">&raquo; [Read&nbsp;more...]</a>
     </div>
   </article>
   {% endfor %}
@@ -51,15 +51,13 @@ layout: default
   <ul class="pager main-pager">
   {% if paginator.previous_page %}
     <li class="previous">
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Yeni Gönderiler</a>
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; New Posts</a>
     </li>
   {% endif %}
   {% if paginator.next_page %}
     <li class="next">
-      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Eski Gönderiler &rarr;</a>
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Old Posts &rarr;</a>
     </li>
   {% endif %}
   </ul>
 {% endif %}
-
-

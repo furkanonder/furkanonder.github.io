@@ -1,5 +1,5 @@
 ---
-title: Etiketler
+title: Tags
 layout: default
 ---
 <div class="navbar navbar-default navbar-fixed-top">
@@ -15,9 +15,9 @@ layout: default
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://furkanonder.github.io/">Anasayfa</a></li>
-        <li><a href="/hakkimda/">Hakkımda</a></li>
-        <li><a href="/arsiv/">Arşiv</a></li>
+        <li><a href="https://furkanonder.github.io/">Home</a></li>
+        <li><a href="/hakkimda/">About</a></li>
+        <li><a href="/arsiv/">Archive</a></li>
       </ul>
     </div>
   </div>
@@ -34,7 +34,8 @@ layout: default
           <a href="{{ site.url }}{{ post.url }}">
             {{ post.title }}
             <span class="entry-date">
-              <time datetime="{{ post.date | %d %B %Y }}">{{ post.date | date: "%-d %B %Y" | replace:"January","Ocak" | replace:"February","Şubat" | replace:"March","Mart" | replace:"May","Mayıs" | replace:"June","Haziran" | replace:"July","Temmuz" | replace:"August","Ağustos" |replace:"September","Eylül"| replace:"October","Ekim"| replace:"November","Kasım" | replace:"December","Aralık" }}
+              <time datetime="{{ post.date | %d %B %Y }}">
+                {{ post.date | date: "%-d %B %Y" }}
               </time>
             </span>
           </a>
